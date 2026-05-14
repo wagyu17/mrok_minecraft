@@ -1155,7 +1155,7 @@
       <div class="stage-body">
         <!-- HERO -->
         <section class="section is-active" id="hero">
-          <h1>マイクラ独自自習ガイド</h1>
+          <h1>マイクラ自習ガイド</h1>
           <p class="lead">
             マイクラのコマンド、CurseForgeのMOD、クラフターズコロニーの配布ワールド、Clipchampの動画編集を見るページです。わからなくなったら「どこを見るか」「何を押すか」「どこに保存されたか」を確認します。
           </p>
@@ -2116,12 +2116,13 @@
           <p class="lead">mod操作解説フォルダ内のMarkdownを、MOD名ごとの開閉フォルダにまとめています。知りたいMOD名を開いて、キー割り当て、基本操作、詳しい使い方、競合しやすいキーを確認します。
           </p>
           <div class="mod-folder-list">
-            <details class="mod-folder" id="mod-guide-create" open>
+            <details class="mod-folder" id="mod-guide-create">
               <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Create 1.21.1
-                  構成</span><span class="mod-folder-meta">Create / Mekanism / Immersive Engineering など</span></summary>
+                  構成</span><span class="mod-folder-meta">工業機械と動力伝達で自動化できるmod構成</span></summary>
               <div class="mod-folder-body">
                 <div class="mod-doc">
                   <h3>Create 1.21.1 構成 キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Create%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Create curseforge mod</a></p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>create-1.21.1-6.0.9.jar</code></li>
@@ -2590,12 +2591,366 @@
                 </div>
               </div>
             </details>
+            <details class="mod-folder" id="mod-guide-farmers-delight">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Farmer's
+                  Delight</span><span class="mod-folder-meta">農業・食材加工・料理設備を追加できるmod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>Farmer's Delight キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Farmer%27s%20Delight%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Farmer's Delight curseforge mod</a></p>
+                  <h4>解析元</h4>
+                  <ul>
+                    <li><code>FarmersDelight-1.21.1-1.3.2.jar</code></li>
+                  </ul>
+                  <p><code>META-INF/neoforge.mods.toml</code>、言語ファイル、レシピJSON、まな板・鍋・コンロ・フライパン・ロープなどの主要classを確認した内容です。</p>
+                  <h4>キー割り当て</h4>
+                  <p>専用の新規キー設定は追加されません。Minecraft標準の右クリック、スニーク、攻撃キーを組み合わせて操作します。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>操作</th>
+                          <th>デフォルト操作</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>道具やブロックを使う</td>
+                          <td>右クリック / 使用キー</td>
+                          <td>まな板、鍋、コンロ、かご、ロープ、フライパンなどを操作します。</td>
+                        </tr>
+                        <tr>
+                          <td>特殊操作</td>
+                          <td><code>Shift</code> + 右クリック</td>
+                          <td>フライパンを設置する、鍋の吊り下げ表示を切り替える、ロープを巻き取るなどに使います。</td>
+                        </tr>
+                        <tr>
+                          <td>手持ちフライパンで食材を返す</td>
+                          <td>左クリック / 攻撃キー</td>
+                          <td>フライパンを使い続けている間に押すと、調理中の食材をひっくり返します。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h4>独自コマンド</h4>
+                  <p>独自のスラッシュコマンドはありません。jar内では Farmer's Delight 用の Brigadier コマンド登録や <code>RegisterCommandsEvent</code> は確認できませんでした。</p>
+                  <h4>主要アイテム・ブロックの使い方</h4>
+                  <h5>ナイフ</h5>
+                  <ul>
+                    <li>食材加工と軽い近接攻撃に使う道具です。</li>
+                    <li>草を壊すと Straw などの素材を得られる場合があります。</li>
+                    <li>動物を倒したとき、通常より多くの副産物を得られる場合があります。</li>
+                    <li>カボチャに右クリックすると、くり抜いたカボチャにできます。</li>
+                    <li>ケーキや対応するケーキ系ブロックに使うと、スライスとして切り分けられます。</li>
+                  </ul>
+                  <h5>まな板</h5>
+                  <ol>
+                    <li>まな板を設置します。</li>
+                    <li>加工したい食材やブロックを持って、まな板を右クリックして置きます。</li>
+                    <li>ナイフ、斧など、レシピに対応した道具を持ってまな板を右クリックします。</li>
+                    <li>加工結果がドロップします。</li>
+                    <li>何も持たずに右クリックすると、まな板の上のアイテムを回収できます。</li>
+                  </ol>
+                  <p>代表例は、原木 + 斧で皮を剥いだ原木と Tree Bark、Cabbage + ナイフで Cabbage Leaf、Raw Chicken + ナイフで Chicken Cuts などです。</p>
+                  <h5>鍋</h5>
+                  <ol>
+                    <li>鍋の下にコンロや焚き火などの熱源を置きます。</li>
+                    <li>鍋を右クリックしてGUIを開き、食材スロットに材料を入れます。</li>
+                    <li>必要に応じて容器スロットに Bowl などの容器を入れます。</li>
+                    <li>調理が進むと完成品ができます。</li>
+                    <li>完成料理はGUIから取り出すか、対応する容器を持って鍋を右クリックして1食分ずつ取り出します。</li>
+                  </ol>
+                  <ul>
+                    <li>空の手でスニーク + 右クリックすると、鍋の吊り下げハンドル表示を切り替えられます。</li>
+                    <li>鍋を壊すと中身がドロップします。</li>
+                    <li>Beef Stew や Fried Rice など、複数食材を使う料理を作れます。</li>
+                  </ul>
+                  <h5>コンロ</h5>
+                  <ul>
+                    <li>Flint and Steel や Fire Charge を使うと点火できます。</li>
+                    <li>シャベルや水入りバケツを使うと消火できます。</li>
+                    <li>火がついているコンロの上面に、焼ける食材を右クリックで置けます。</li>
+                    <li>焼き上がった食材はコンロ上から回収できます。</li>
+                    <li>点火中のコンロに触れるとダメージを受ける場合があります。</li>
+                  </ul>
+                  <h5>フライパン</h5>
+                  <p>フライパンは、手に持って外出先調理をする使い方と、ブロックとして設置して使う方法があります。</p>
+                  <ol>
+                    <li>手持ち調理では、フライパンを片手、焼きたい食材をもう片方の手に持ちます。</li>
+                    <li>火や熱源の近くに立ち、右クリック長押しで調理します。</li>
+                    <li>調理中に左クリック / 攻撃キーを押すと、食材をひっくり返します。</li>
+                    <li>スニーク + 右クリックでフライパンをブロックとして設置できます。</li>
+                    <li>設置したフライパンには食材を右クリックで入れ、空の手で右クリックして取り出します。</li>
+                  </ol>
+                  <p>水中では手持ちフライパン調理ができません。ブロックとして設置する場合はスニーク操作が必要です。</p>
+                  <h5>ロープ</h5>
+                  <ul>
+                    <li>既存のロープにロープを右クリックすると、基本的には下方向に延長されます。</li>
+                    <li>スニークしながら既存ロープに使うと、クリックした面の方向へ延長できます。</li>
+                    <li>空の手でスニーク + 右クリックすると、ロープを下側から巻き取るように回収できます。</li>
+                    <li>ロープの上にベルがつながっている場合、ロープを右クリックしてベルを鳴らせることがあります。</li>
+                  </ul>
+                  <h5>かご</h5>
+                  <ul>
+                    <li>アイテムを入れられる収納ブロックです。</li>
+                    <li>空の手で右クリックするとGUIを開けます。</li>
+                    <li>壊すと中のアイテムがドロップします。</li>
+                    <li>レッドストーン比較器で中身の量を検出できます。</li>
+                  </ul>
+                  <h4>レシピと料理効果</h4>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>分類</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Cooking</td>
+                          <td>鍋で食材を煮込む料理レシピです。</td>
+                        </tr>
+                        <tr>
+                          <td>Cutting</td>
+                          <td>まな板と道具で食材やブロックを加工するレシピです。</td>
+                        </tr>
+                        <tr>
+                          <td>Salvaging</td>
+                          <td>一部アイテムを素材に戻す分解系レシピです。</td>
+                        </tr>
+                        <tr>
+                          <td>Nourishment</td>
+                          <td>体力を回復する場合を除き、満腹度ゲージの減少を防ぎます。</td>
+                        </tr>
+                        <tr>
+                          <td>Comfort</td>
+                          <td>空腹、移動速度低下、弱体化に対する耐性を与えます。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h4>注意点</h4>
+                  <ul>
+                    <li>専用キー設定は追加されないため、操作はほぼ右クリック、スニーク、攻撃キーで完結します。</li>
+                    <li>鍋やフライパンは、熱源がないと調理が進みません。</li>
+                    <li>まな板は、置いたアイテムと使う道具の組み合わせがレシピに合っている必要があります。</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+            <details class="mod-folder" id="mod-guide-jei">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">JEI</span><span
+                  class="mod-folder-meta">アイテム一覧とレシピ検索を追加できるmod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>JEI キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=JEI%20curseforge%20mod" target="_blank" rel="noopener noreferrer">JEI curseforge mod</a></p>
+                  <h4>解析元</h4>
+                  <ul>
+                    <li><code>jei-1.21.1-neoforge-19.27.0.336.jar</code></li>
+                  </ul>
+                  <p><code>InternalKeyMappings</code>、言語ファイル、GUI処理、チートモードの権限確認処理を確認した内容です。</p>
+                  <h4>キー割り当て</h4>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>キー</th>
+                          <th>機能</th>
+                          <th>操作方法</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>Ctrl</code> + <code>O</code></td>
+                          <td>JEIの表示 / 非表示</td>
+                          <td>インベントリ右側のアイテム一覧オーバーレイを表示・非表示にします。Macでは Command + O 相当です。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Ctrl</code> + <code>F</code></td>
+                          <td>検索バーの選択</td>
+                          <td>JEI検索バーにフォーカスします。Macでは Command + F 相当です。</td>
+                        </tr>
+                        <tr>
+                          <td><code>R</code> / 左クリック</td>
+                          <td>レシピの表示</td>
+                          <td>カーソルを合わせたアイテム、またはJEI一覧上のアイテムの作り方を表示します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>U</code> / 右クリック</td>
+                          <td>用途の表示</td>
+                          <td>そのアイテムが何に使えるかを表示します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>A</code></td>
+                          <td>ブックマーク追加 / 削除</td>
+                          <td>カーソルを合わせたアイテムを左側のブックマークに追加、または削除します。</td>
+                        </tr>
+                        <tr>
+                          <td>検索バー上で右クリック</td>
+                          <td>検索バーを消去</td>
+                          <td>入力中の検索文字を消します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>↑</code> / <code>↓</code></td>
+                          <td>検索履歴</td>
+                          <td>前後の検索履歴に切り替えます。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Backspace</code></td>
+                          <td>前のレシピに戻る</td>
+                          <td>レシピ画面の履歴を1つ戻ります。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Page Up</code> / <code>Page Down</code></td>
+                          <td>レシピページ切り替え</td>
+                          <td>同じカテゴリ内の前後ページへ移動します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Shift</code> + <code>Page Up</code> / <code>Page Down</code></td>
+                          <td>カテゴリ切り替え</td>
+                          <td>前後のレシピカテゴリへ移動します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Esc</code></td>
+                          <td>レシピ画面を閉じる</td>
+                          <td>開いているレシピ画面を閉じます。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h5>未割り当ての主な機能</h5>
+                  <ul>
+                    <li>アイテム一覧の前ページ / 次ページ</li>
+                    <li>ブックマーク一覧の表示 / 非表示</li>
+                    <li>チートモード切り替え</li>
+                    <li>編集モード切り替え</li>
+                    <li>レシピIDコピー</li>
+                  </ul>
+                  <h4>独自コマンド</h4>
+                  <p>JEI独自のスラッシュコマンドはありません。チートモードでアイテムを出す機能は、サーバー側の権限やバニラの <code>/give</code> 実行権限を確認して動作します。</p>
+                  <h4>基本操作</h4>
+                  <h5>レシピと用途を見る</h5>
+                  <ul>
+                    <li>作り方を見たいアイテムにカーソルを合わせて <code>R</code>、またはJEI一覧上で左クリックします。</li>
+                    <li>使い道を見たいアイテムにカーソルを合わせて <code>U</code>、またはJEI一覧上で右クリックします。</li>
+                    <li>レシピ画面では <code>Backspace</code> で履歴を戻り、<code>Page Up</code> / <code>Page Down</code> でページを切り替えます。</li>
+                  </ul>
+                  <h5>検索する</h5>
+                  <p>検索バーに文字を入力すると、右側のアイテム一覧が絞り込まれます。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>記号</th>
+                          <th>検索対象</th>
+                          <th>例</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>@</code></td>
+                          <td>MOD名</td>
+                          <td><code>@create</code>、<code>@jei</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>#</code></td>
+                          <td>タグ</td>
+                          <td><code>#forge:ingots</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$</code></td>
+                          <td>ツールチップ</td>
+                          <td><code>$attack</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>^</code></td>
+                          <td>色</td>
+                          <td><code>^red</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>&amp;</code></td>
+                          <td>リソースID</td>
+                          <td><code>&amp;minecraft:diamond</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>%</code></td>
+                          <td>クリエイティブタブ</td>
+                          <td><code>%building</code></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h5>レシピ転送を使う</h5>
+                  <ol>
+                    <li>作りたいアイテムのレシピを開きます。</li>
+                    <li>必要な材料をインベントリに用意します。</li>
+                    <li>レシピ転送ボタンを押します。</li>
+                    <li>クラフト台や作業GUIに材料が自動配置されます。</li>
+                  </ol>
+                  <p>材料不足、インベントリの空き不足、サーバー側の非対応があると転送できない場合があります。</p>
+                  <h5>ブックマークを使う</h5>
+                  <ul>
+                    <li>アイテムにカーソルを合わせて <code>A</code> でブックマーク追加 / 削除を行います。</li>
+                    <li>ブックマーク欄のアイテムから、レシピや用途をすぐ確認できます。</li>
+                    <li><code>Shift</code> + 左クリックでブックマークしたレシピを1回分転送します。</li>
+                    <li><code>Ctrl</code> + 左クリックで作れるだけまとめて転送します。</li>
+                  </ul>
+                  <h5>チートモード</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>操作</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>左クリック / 右クリック</td>
+                          <td>チートモード中、JEIリストのアイテムを1個入手します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Shift</code> + 左クリック</td>
+                          <td>チートモード中、1スタック入手します。</td>
+                        </tr>
+                        <tr>
+                          <td>ホイールクリック</td>
+                          <td>チートモード中、1スタック入手します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Ctrl</code> + 左クリック</td>
+                          <td>JEI設定ボタン上で使うチートモード切り替え操作です。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>チートモードは、クリエイティブ権限、OP権限、または <code>/give</code> 実行権限がない環境では機能しません。</p>
+                  <h5>編集・非表示モード</h5>
+                  <ul>
+                    <li>編集モード切り替えは未割り当てなので、必要ならキー設定で割り当てます。</li>
+                    <li>編集モード中に <code>Ctrl</code> + 左クリックで対象アイテムを非表示 / 表示にします。</li>
+                    <li><code>Ctrl</code> + 右クリックで同種アイテムをまとめて非表示 / 表示にします。</li>
+                  </ul>
+                  <h4>注意点</h4>
+                  <ul>
+                    <li><code>R</code> はレシピ、<code>U</code> は用途、<code>A</code> はブックマークです。この3つを覚えると基本操作はほぼ使えます。</li>
+                    <li>JEI自体に独自スラッシュコマンドはありません。</li>
+                    <li>チートモードは権限がない環境では機能しません。</li>
+                    <li>未割り当てのキーは、Minecraft のキー設定から必要に応じて割り当ててください。</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
             <details class="mod-folder" id="mod-guide-epic-fight">
               <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Epic Fight
-                  系</span><span class="mod-folder-meta">Epic Fight / Invincible Lib / Sword Soaring</span></summary>
+                  系</span><span class="mod-folder-meta">戦闘モーションと武器スキルを追加できるmod</span></summary>
               <div class="mod-folder-body">
                 <div class="mod-doc">
                   <h3>Epic Fight 系 mod キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Epic%20Fight%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Epic Fight curseforge mod</a></p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>epic-fight-20.14.5-mc1.20.1-forge.jar</code></li>
@@ -2805,11 +3160,12 @@
             </details>
             <details class="mod-folder" id="mod-guide-jujutsu">
               <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">JujutsuCraft
-                  系</span><span class="mod-folder-meta">JujutsuCraft / JujutsuCraftV / Jujutsu Kasien Addon</span>
+                  系</span><span class="mod-folder-meta">呪術廻戦の術式や領域展開を使えるmod</span>
               </summary>
               <div class="mod-folder-body">
                 <div class="mod-doc">
                   <h3>JujutsuCraft 系 mod キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=JujutsuCraft%20curseforge%20mod" target="_blank" rel="noopener noreferrer">JujutsuCraft curseforge mod</a></p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>JujutsuCraft-ver48-forge-1.20.1.jar</code></li>
@@ -3129,10 +3485,11 @@
             </details>
             <details class="mod-folder" id="mod-guide-kimetsu">
               <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Kimetsu no
-                  Yaiba</span><span class="mod-folder-meta">呼吸・血鬼術・特殊攻撃</span></summary>
+                  Yaiba</span><span class="mod-folder-meta">鬼滅の刃の呼吸・血鬼術・特殊攻撃を使えるmod</span></summary>
               <div class="mod-folder-body">
                 <div class="mod-doc">
                   <h3>Kimetsu no Yaiba mod キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Kimetsu%20no%20Yaiba%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Kimetsu no Yaiba curseforge mod</a></p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>KimetsunoYaiba-ver3-forge-1.20.1.jar</code></li>
@@ -3212,10 +3569,11 @@
             </details>
             <details class="mod-folder" id="mod-guide-mahou">
               <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Mahou
-                  Tsukai</span><span class="mod-folder-meta">魔法陣 / Mystic Code / Selective Displacement</span></summary>
+                  Tsukai</span><span class="mod-folder-meta">魔法陣を描いて多彩な魔法を発動できるmod</span></summary>
               <div class="mod-folder-body">
                 <div class="mod-doc">
                   <h3>Mahou Tsukai キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Mahou%20Tsukai%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Mahou Tsukai curseforge mod</a></p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>mahoutsukai-1.20.1-v1.34.80.jar</code></li>
@@ -3290,13 +3648,13 @@
             </details>
             <details class="mod-folder" id="mod-guide-tacz">
               <summary><span class="folder-icon" aria-hidden="true"></span><span
-                  class="mod-folder-name">TaCZ</span><span class="mod-folder-meta">Timeless &amp; Classics Guns:
-                  Zero</span></summary>
+                  class="mod-folder-name">TaCZ</span><span class="mod-folder-meta">リアルな銃を追加できるmod</span></summary>
               <div class="mod-folder-body">
                 <details class="mod-doc-toggle" open>
                   <summary>キー割り当てと操作方法</summary>
                   <div class="mod-doc">
                     <h3>TaCZ キー割り当てと操作方法</h3>
+                    <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=TaCZ%20curseforge%20mod" target="_blank" rel="noopener noreferrer">TaCZ curseforge mod</a></p>
                     <h4>解析元</h4>
                     <ul>
                       <li><code>tacz-1.20.1-1.1.8-release.jar</code></li>
@@ -5257,10 +5615,11 @@ I I</code></pre>
             </details>
             <details class="mod-folder" id="mod-guide-primepunchpatch">
               <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Prime Punch
-                  Patch</span><span class="mod-folder-meta">種族技 / 格闘スタイル / ステータス</span></summary>
+                  Patch</span><span class="mod-folder-meta">種族技と格闘スタイルで戦えるワンパンマン系mod</span></summary>
               <div class="mod-folder-body">
                 <div class="mod-doc">
                   <h3>Prime Punch Patch キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Prime%20Punch%20Patch%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Prime Punch Patch curseforge mod</a></p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>primepunchpatch.jar</code></li>
@@ -5538,10 +5897,11 @@ I I</code></pre>
             </details>
             <details class="mod-folder" id="mod-guide-techguns">
               <summary><span class="folder-icon" aria-hidden="true"></span><span
-                  class="mod-folder-name">Techguns</span><span class="mod-folder-meta">銃 / 防具 / ジェットパック</span></summary>
+                  class="mod-folder-name">Techguns</span><span class="mod-folder-meta">銃・防具・ジェットパックを追加できる1.12.2向けmod</span></summary>
               <div class="mod-folder-body">
                 <div class="mod-doc">
                   <h3>Techguns キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Techguns%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Techguns curseforge mod</a></p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>techguns-1.12.2-2.0.2.0_pre3.2.jar</code></li>
