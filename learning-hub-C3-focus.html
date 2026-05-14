@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>マイクラ自習ガイド ｜ C3 フォーカス</title>
+  <title>マイクラ独自自習ガイド ｜ C3 フォーカス</title>
   <style>
     :root {
       color-scheme: light;
@@ -996,6 +996,19 @@
             </article>
 
             <article class="mod-card">
+              <div class="mod-title"><span class="mod-badge">戦闘</span><strong>Prime Punch Patch</strong></div>
+              <p>種族技と格闘スタイル技を切り替えながら、5つの技スロットを使う戦闘MODです。</p>
+              <div class="key-list">
+                <span><code>右クリック</code> Human / Cyborg / Esper / Sonic / Limit Breaker のアイテムを使って系統をセット。</span>
+                <span><code>R</code> 種族技ページと格闘スタイル技ページを切り替える。</span>
+                <span><code>Z</code> / <code>X</code> / <code>C</code> / <code>V</code> / <code>G</code> 技スロット1から5を発動。</span>
+                <span><code>H</code> 短時間の移動速度ブースト。再使用まで約7.5秒。</span>
+                <span><code>M</code> ステータスメニューを開き、Health / Strength にポイントを振る。</span>
+                <span>Sonic系の一部技は <code>Speed O Sound Katana</code> が必要です。</span>
+              </div>
+            </article>
+
+            <article class="mod-card">
               <div class="mod-title"><span class="mod-badge">呼吸</span><strong>Kimetsu no Yaiba</strong></div>
               <p>呼吸や血鬼術を切り替えて、特殊攻撃と回避を使います。</p>
               <div class="key-list">
@@ -1049,11 +1062,11 @@
               <div class="mod-title"><span class="mod-badge">競合</span><strong>重なりやすいキー</strong></div>
               <p>複数MODを同時に入れると、同じキーに別の動作が入ることがあります。</p>
               <div class="key-list">
-                <span><code>R</code> 技切替、戦闘モード、リロード、レシピ表示などで重なりやすい。</span>
-                <span><code>G</code> ロックオン、簡易領域、Mekanism装備モードで重なりやすい。</span>
-                <span><code>M</code> 反転術式、痣、魔法陣で重なりやすい。</span>
-                <span><code>H</code> HUD、武器確認、呪霊インベントリ、Selective Displacementで重なりやすい。</span>
-                <span><code>V</code> メイン技、近接/ズーム、装備モード、ステップアシストで重なりやすい。</span>
+                <span><code>R</code> 技切替、Prime Punchのページ切替、戦闘モード、リロード、レシピ表示などで重なりやすい。</span>
+                <span><code>G</code> Prime Punchの5番技、ロックオン、簡易領域、Mekanism装備モードで重なりやすい。</span>
+                <span><code>M</code> Prime Punchのステータスメニュー、反転術式、痣、魔法陣で重なりやすい。</span>
+                <span><code>H</code> Prime Punchの速度ブースト、HUD、武器確認、呪霊インベントリ、Selective Displacementで重なりやすい。</span>
+                <span><code>V</code> Prime Punchの4番技、メイン技、近接/ズーム、装備モード、ステップアシストで重なりやすい。</span>
                 <span><code>Alt</code> と <code>Space</code> は回避、飛行、ジャンプ、Create操作で動きが変わります。</span>
               </div>
             </article>
@@ -2393,6 +2406,110 @@ I I</code></pre>
 </ul>
 </div>
 </details>
+  </div>
+</details>
+<details class="mod-folder" id="mod-guide-primepunchpatch">
+  <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Prime Punch Patch</span><span class="mod-folder-meta">種族技 / 格闘スタイル / ステータス</span></summary>
+  <div class="mod-folder-body">
+<div class="mod-doc">
+<h3>Prime Punch Patch キー割り当てと操作方法</h3>
+<h4>解析元</h4>
+<ul>
+<li><code>primepunchpatch.jar</code></li>
+<li><code>player-animation-lib-forge-1.0.2-rc1+1.20.jar</code></li>
+<li><code>photon-forge-1.20.1-1.1.14.jar</code></li>
+<li><code>Pehkui-3.8.2+1.20.1-forge.jar</code></li>
+<li><code>geckolib-forge-1.20.1-4.8.2.jar</code></li>
+</ul>
+<p><code>primepunchpatch.jar</code> の <code>PrimepunchModKeyMappings</code>、各キーの <code>Message</code>、押下時に呼ばれる <code>Procedure</code>、画面オーバーレイ、言語ファイルを逆コンパイルして確認した内容です。依存ライブラリ側はアニメーション、エフェクト、サイズ変更、モデル表示の補助が中心で、このフォルダ内で Prime Punch 用に追加されている主要キーは下の8個です。</p>
+<h4>キー割り当て</h4>
+<div class="mod-table-wrap"><table>
+<thead><tr><th>キー</th><th>機能</th><th>操作方法</th></tr></thead>
+<tbody>
+<tr><td><code>Z</code></td><td>技スロット1</td><td>現在選択中の種族技、または格闘スタイル技の1番目を使います。内部処理は <code>ZOnKeyPressedProcedure</code> です。</td></tr>
+<tr><td><code>X</code></td><td>技スロット2</td><td>現在選択中の2番目の技を使います。内部処理は <code>XOnKeyPressedProcedure</code> です。</td></tr>
+<tr><td><code>C</code></td><td>技スロット3</td><td>現在選択中の3番目の技を使います。内部処理名は <code>RealCPressedProcedure</code> です。</td></tr>
+<tr><td><code>V</code></td><td>技スロット4</td><td>現在選択中の4番目の技を使います。内部処理名は変則的に <code>COnKeyPressedProcedure</code> です。</td></tr>
+<tr><td><code>G</code></td><td>技スロット5 / 大技</td><td>現在選択中の5番目の技を使います。強力な技や究極技に割り当てられていることが多いです。内部処理は <code>GPressedProcedure</code> です。</td></tr>
+<tr><td><code>R</code></td><td>種族技 / 格闘スタイル技の切り替え</td><td>押すたびに <code>styleselected</code> が <code>0</code> と <code>1</code> で切り替わります。<code>0</code> が種族技、<code>1</code> が格闘スタイル技です。画面にも <code>R to switch styles</code> と表示されます。</td></tr>
+<tr><td><code>H</code></td><td>短時間の移動速度ブースト</td><td>クールダウンが残っていない時に、約2秒間の移動速度上昇を付与します。効果量はレベルに応じて上がります。再使用まで約7.5秒です。</td></tr>
+<tr><td><code>M</code></td><td>ステータスメニュー</td><td>Rank、Level、XP、Health、Strength、Stat Points を表示するメニューを開きます。ポイントがあれば Health / Strength に振れます。</td></tr>
+</tbody>
+</table></div>
+<p>すべてのキーは「押した瞬間」に処理されます。長押し、離した瞬間、押している時間による別処理は確認できませんでした。</p>
+<h4>基本操作の流れ</h4>
+<ol>
+<li>種族または格闘スタイルのアイテムを右クリックして、使う系統をセットします。</li>
+<li><code>R</code> で種族技ページと格闘スタイル技ページを切り替えます。</li>
+<li>画面下部の表示を見ながら <code>Z</code>、<code>X</code>、<code>C</code>、<code>V</code>、<code>G</code> で技を発動します。</li>
+<li>クールダウン中、レベル不足、スタン中は技が出ません。</li>
+<li>レベルアップなどで得たステータスポイントは <code>M</code> のメニューから Strength / Health に振ります。</li>
+</ol>
+<h4>種族と格闘スタイルのセット方法</h4>
+<div class="mod-table-wrap"><table>
+<thead><tr><th>アイテム</th><th>セットされる内部状態</th><th>使える技枠</th></tr></thead>
+<tbody>
+<tr><td><code>Human V1</code></td><td><code>racestyle = humanv1</code></td><td>2枠</td></tr>
+<tr><td><code>Human V2</code></td><td><code>racestyle = humanv2</code></td><td>5枠</td></tr>
+<tr><td><code>Cyborg V1</code></td><td><code>racestyle = cyborgv1</code></td><td>2枠</td></tr>
+<tr><td><code>Cyborg V2</code></td><td><code>racestyle = cyborgv2</code></td><td>5枠</td></tr>
+<tr><td><code>Esper v1</code></td><td><code>racestyle = esperv1</code></td><td>2枠</td></tr>
+<tr><td><code>Esper v2</code></td><td><code>racestyle = esperv2</code></td><td>5枠</td></tr>
+<tr><td><code>Speed O Sound Sonic Style</code></td><td><code>fightingstyle = sonic</code></td><td>格闘スタイル側の技</td></tr>
+<tr><td><code>Limit Breaker</code></td><td><code>fightingstyle = limitbroken</code></td><td>5枠</td></tr>
+</tbody>
+</table></div>
+<p>V1系の種族は基本的に <code>Z</code> と <code>X</code> の2技構成です。V2系や Limit Breaker は <code>Z</code>、<code>X</code>、<code>C</code>、<code>V</code>、<code>G</code> の5枠を使います。Speed O Sound Sonic 系の一部技は <code>Speed O Sound Katana</code> が必要で、未装備だと <code>Must have sword equipped</code> というメッセージが出る処理があります。</p>
+<h4>技スロットの解除条件</h4>
+<div class="mod-table-wrap"><table>
+<thead><tr><th>スロット</th><th>キー</th><th>解除目安</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>Z</code></td><td>Level 1 以上</td></tr>
+<tr><td>2</td><td><code>X</code></td><td>Level 5 以上</td></tr>
+<tr><td>3</td><td><code>C</code></td><td>Level 10 以上、かつそのフォームが3技以上持つ</td></tr>
+<tr><td>4</td><td><code>V</code></td><td>Level 20 以上、かつそのフォームが4技以上持つ</td></tr>
+<tr><td>5</td><td><code>G</code></td><td>Level 30 以上、かつそのフォームが5技以上持つ</td></tr>
+</tbody>
+</table></div>
+<p>画面の <code>Locked</code> 表示はこの条件を見ています。V1フォームのように技枠自体が2つしかない場合、3枠目以降はレベルを上げても基本的に使えません。上位フォームや別スタイルへ切り替える必要があります。</p>
+<h4>技の内容</h4>
+<p>技名はゲーム内表示ではなく、内部リソース名と処理名から読めるものです。</p>
+<div class="mod-table-wrap"><table>
+<thead><tr><th>系統</th><th><code>Z</code></th><th><code>X</code></th><th><code>C</code></th><th><code>V</code></th><th><code>G</code></th></tr></thead>
+<tbody>
+<tr><td>Human</td><td>Heavy Punch 系</td><td>Uppercut 系</td><td>Serious Crack / Knuckle 系</td><td>Rapid Punch / Table Flip 系</td><td>Human Ultimate / Dropkick 系</td></tr>
+<tr><td>Cyborg</td><td>Cyborg Shot 系</td><td>Cyborg Kick / Launch 系</td><td>Cyborg Thunder Kick 系</td><td>Cyborg Laser / Machinegun Blows 系</td><td>Incinerate 系</td></tr>
+<tr><td>Esper</td><td>Esper Push 系</td><td>Esper Lift / Target 系</td><td>Esper Combo 系</td><td>Esper Fly / Esper Boom 系</td><td>Esper Meteor / Esper Ultimate 系</td></tr>
+<tr><td>Sonic</td><td>Sonic Slice / Flash 系</td><td>Sonic 連撃系</td><td>Sonic 斬撃系</td><td>Fourfold Flash / Final Slice 系</td><td>Sonic Ultimate 系</td></tr>
+<tr><td>Limit Breaker</td><td>Normal Punch 系</td><td>Consecutive Normal Punches / Barrage 系</td><td>Knuckle / Smash 系</td><td>Omnidirectional Punch 系</td><td>Serious Punch 系</td></tr>
+</tbody>
+</table></div>
+<p>実戦では「今のページが種族か格闘スタイルか」を <code>R</code> で確認してから技を押すのが重要です。同じ <code>Z</code> でも、種族ページなら Human / Cyborg / Esper 側の技、格闘スタイルページなら Sonic / Limit Breaker 側の技になります。</p>
+<h4>クールダウンの見方</h4>
+<ul>
+<li>種族技ページでは <code>racecd1</code> から <code>racecd5</code> が使われ、<code>Cd1</code> から <code>Cd5</code> のオーバーレイが表示されます。</li>
+<li>格闘スタイル技ページでは <code>fightstylecd1</code> から <code>fightstylecd5</code> が使われ、<code>Fscd1</code> から <code>Fscd5</code> のオーバーレイが表示されます。</li>
+<li><code>Z</code> は1番、<code>X</code> は2番、<code>C</code> は3番、<code>V</code> は4番、<code>G</code> は5番のクールダウンに対応します。</li>
+<li><code>H</code> の移動速度ブーストは、技スロットとは別に <code>COOLDOWN_1</code> 効果を使って再使用を制限しています。</li>
+</ul>
+<h4>ステータスメニュー</h4>
+<p><code>M</code> を押すと <code>StatmenuScreen</code> が開きます。表示される主な項目は <code>Rank</code>、<code>Level</code>、<code>XP</code>、<code>Health</code>、<code>Strength</code>、<code>Stat Points</code> です。</p>
+<ul>
+<li>Strength の <code>add</code> ボタンは、ステータスポイントを1消費して攻撃力計算用の内部値を増やします。</li>
+<li>Health の <code>add</code> ボタンは、ステータスポイントを1消費して <code>healthstat</code> を増やし、最大体力系の強化と回復系効果を付け直します。</li>
+<li>ステータスポイントが0以下の場合、ボタンを押しても加算されません。</li>
+</ul>
+<h4>キー競合の注意</h4>
+<p>この mod は <code>Z</code>、<code>X</code>、<code>C</code>、<code>V</code>、<code>G</code>、<code>R</code>、<code>H</code>、<code>M</code> をまとめて使うため、他の戦闘系 mod とかなり競合しやすいです。</p>
+<ul>
+<li><code>R</code> は Epic Fight、JujutsuCraft、JEI のレシピ表示などと競合しやすいです。</li>
+<li><code>G</code> は Epic Fight のロックオン、Curios、ProjectE などと競合しやすいです。</li>
+<li><code>M</code> は JujutsuCraft 系の変身 / 特殊効果キーと競合しやすいです。</li>
+<li><code>C</code>、<code>V</code>、<code>X</code> は JujutsuCraft、ProjectE、ParCool などと競合しやすいです。</li>
+<li><code>H</code> は JujutsuCraftV の Curios スロット操作と競合しやすいです。</li>
+</ul>
+<p>複数 mod を同時に遊ぶ場合は、Minecraft の「操作設定」から Prime Punch 側か他 mod 側のどちらかを別キーへ移すのがおすすめです。Prime Punch のキー名は言語ファイル上では <code>Z</code>、<code>X</code>、<code>C</code>、<code>V</code>、<code>G</code>、<code>M</code>、<code>R</code>、<code>H</code> のようにそのまま表示されます。</p>
+</div>
   </div>
 </details>
 <details class="mod-folder" id="mod-guide-techguns">
