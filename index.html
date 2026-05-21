@@ -6897,275 +6897,567 @@ I I</code></pre>
                 <div class="mod-doc">
                   <h3>WorldEdit キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=WorldEdit%20curseforge%20mod" target="_blank" rel="noopener noreferrer">WorldEdit curseforge mod</a></p>
-                  <h4>解析元</h4>
-                  <ul>
-                    <li><code>worldedit-mod-7.2.15.jar</code></li>
-                    <li>MOD ID: <code>worldedit</code></li>
-                    <li>バージョン: <code>7.2.15+6463-5ca4dff</code></li>
-                  </ul>
+
+                  <h4>MOD概要</h4>
                   <p>
-                    <code>com.sk89q.worldedit.command</code> 以下のコマンド登録クラスと、フォルダ内のMarkdownをもとにまとめています。
-                    WorldEdit は専用キーを追加するタイプではなく、チャットコマンドと木の斧などのツール操作で使うMODです。
+                    WorldEdit は、ゲーム内で広範囲のブロック編集、建築物のコピー・貼り付け、地形生成、ブラシ編集などを行えるワールド編集 MOD です。通常のキー操作よりも、専用アイテムとコマンドを組み合わせて使うタイプの MOD です。
                   </p>
 
+                  <h4>解析元</h4>
+                  <ul>
+                    <li>対象ファイル: <code>worldedit-mod-7.2.15.jar</code></li>
+                    <li>MOD ID: <code>worldedit</code></li>
+                    <li>バージョン: <code>7.2.15+6463-5ca4dff</code></li>
+                    <li>対応 Minecraft: <code>1.20.x</code></li>
+                    <li>主要設定ファイル: <code>defaults/worldedit.properties</code></li>
+                    <li>コマンド解析元: <code>com/sk89q/worldedit/command/*CommandsRegistration.class</code></li>
+                  </ul>
+
                   <h4>キー割り当て</h4>
+                  <p>WorldEdit には、Minecraft のキー設定画面に追加される専用キーバインドはありません。操作は主に以下の 3 種類です。</p>
                   <div class="mod-table-wrap">
                     <table>
                       <thead>
                         <tr>
                           <th>操作</th>
-                          <th>機能</th>
-                          <th>操作方法</th>
+                          <th>内容</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td><code>/</code></td>
-                          <td>コマンド入力</td>
-                          <td>WorldEdit のほとんどの操作はチャット欄に <code>//set</code> のようなコマンドを入力して実行します。</td>
+                          <td><code>/</code> キー</td>
+                          <td>Minecraft 標準のチャット欄を開き、WorldEdit コマンドを入力する</td>
                         </tr>
                         <tr>
-                          <td>木の斧で左クリック</td>
-                          <td>選択範囲の始点</td>
-                          <td><code>//wand</code> で出した木の斧を持ち、ブロックを左クリックして pos1 を指定します。</td>
+                          <td>左クリック</td>
+                          <td>選択ワンド、ナビゲーションワンド、ブラシ、ツールの主要アクションを実行する</td>
                         </tr>
                         <tr>
-                          <td>木の斧で右クリック</td>
-                          <td>選択範囲の終点</td>
-                          <td>木の斧を持ち、ブロックを右クリックして pos2 を指定します。</td>
-                        </tr>
-                        <tr>
-                          <td>コンパスで右クリック</td>
-                          <td>移動補助</td>
-                          <td>ナビゲーションツールとして設定されている場合、見ている方向への移動補助に使います。</td>
+                          <td>右クリック</td>
+                          <td>選択ワンド、ナビゲーションワンド、一部ツールの副アクションを実行する</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <h4>独自コマンド</h4>
-                  <p>
-                    WorldEdit は独自コマンドが中心のMODです。コマンドは <code>//</code> で始まる編集系と、<code>/brush</code> や
-                    <code>/tool</code> のようなツール系に分かれます。サーバーでは権限がないと実行できないことがあります。
-                  </p>
+                  <h4>デフォルトの専用アイテム</h4>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>アイテム</th>
+                          <th>役割</th>
+                          <th>デフォルト設定</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>木の斧</td>
+                          <td>範囲選択ワンド</td>
+                          <td><code>minecraft:wooden_axe</code></td>
+                        </tr>
+                        <tr>
+                          <td>コンパス</td>
+                          <td>ナビゲーションワンド</td>
+                          <td><code>minecraft:compass</code></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p><code>defaults/worldedit.properties</code> では、木の斧が選択用、コンパスが移動用のワンドとして設定されています。</p>
+
+                  <h4>木の斧による範囲選択</h4>
+                  <p>WorldEdit の基本は「2 点を選択して、その範囲にコマンドを実行する」流れです。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>操作</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>//wand</code></td><td>木の斧を取得する</td></tr>
+                        <tr><td>木の斧でブロックを左クリック</td><td>選択範囲の 1 点目を設定する</td></tr>
+                        <tr><td>木の斧でブロックを右クリック</td><td>選択範囲の 2 点目を設定する</td></tr>
+                        <tr><td><code>//pos1</code></td><td>現在位置を 1 点目にする</td></tr>
+                        <tr><td><code>//pos2</code></td><td>現在位置を 2 点目にする</td></tr>
+                        <tr><td><code>//hpos1</code></td><td>見ているブロックを 1 点目にする</td></tr>
+                        <tr><td><code>//hpos2</code></td><td>見ているブロックを 2 点目にする</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>基本例:</p>
+                  <pre>//wand
+木の斧で角のブロックを左クリック
+反対側の角のブロックを右クリック
+//set stone</pre>
+                  <p>この例では、選択した直方体範囲が石に置き換わります。</p>
+
+                  <h4>コンパスによる移動操作</h4>
+                  <p>コンパスはナビゲーションワンドとして動作します。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>操作</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/thru</code></td><td>視線方向の壁を通り抜ける</td></tr>
+                        <tr><td><code>/jumpto</code></td><td>見ているブロック付近へ移動する</td></tr>
+                        <tr><td>コンパス左クリック</td><td>壁抜け移動を実行する</td></tr>
+                        <tr><td>コンパス右クリック</td><td>見ている地点へジャンプする</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>設定上の最大距離は <code>nav-wand-distance=50</code> です。</p>
+
+                  <h4>主要コマンド</h4>
+                  <p>WorldEdit のコマンドは、<code>//set</code> のように <code>//</code> で始まるものと、<code>/brush</code> や <code>/tool</code> のように通常の <code>/</code> で始まるものがあります。</p>
+
+                  <h5>コマンドグループの別名</h5>
+                  <p>jar 内の <code>PlatformCommandManager</code> では、以下のコマンドグループと別名が登録されています。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>正式コマンド</th>
+                          <th>別名</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/schematic</code></td><td><code>/schem</code></td><td>スキーマティックの保存・読み込み</td></tr>
+                        <tr><td><code>/snapshot</code></td><td><code>/snap</code></td><td>スナップショットからの復元</td></tr>
+                        <tr><td><code>/superpickaxe</code></td><td><code>/pickaxe</code>, <code>/sp</code></td><td>スーパーピッケル</td></tr>
+                        <tr><td><code>/brush</code></td><td><code>/br</code></td><td>ブラシ設定</td></tr>
+                        <tr><td><code>/worldedit</code></td><td><code>/we</code></td><td>WorldEdit 本体設定・情報表示</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
 
                   <h5>範囲選択</h5>
-                  <div class="table-scroll">
+                  <div class="mod-table-wrap">
                     <table>
                       <thead>
-                        <tr>
-                          <th>コマンド</th>
-                          <th>用途</th>
-                        </tr>
+                        <tr><th>コマンド</th><th>内容</th></tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><code>//wand</code></td>
-                          <td>範囲選択用の木の斧を入手します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//pos1</code> / <code>//pos2</code></td>
-                          <td>自分の足元を選択範囲の始点・終点にします。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//hpos1</code> / <code>//hpos2</code></td>
-                          <td>見ているブロックを始点・終点にします。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//sel</code></td>
-                          <td>直方体、球、ポリゴンなどの選択モードを切り替えます。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//expand</code> / <code>//contract</code></td>
-                          <td>選択範囲を広げる、または縮めます。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//shift</code></td>
-                          <td>選択範囲そのものを指定方向へずらします。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//size</code></td>
-                          <td>現在の選択範囲のブロック数を確認します。</td>
-                        </tr>
+                        <tr><td><code>//wand</code></td><td>選択ワンドを取得する</td></tr>
+                        <tr><td><code>//toggleeditwand</code></td><td>選択ワンド機能の有効・無効を切り替える</td></tr>
+                        <tr><td><code>//sel</code></td><td>選択形状を変更する</td></tr>
+                        <tr><td><code>//pos1</code> / <code>//pos2</code></td><td>現在位置を選択位置にする</td></tr>
+                        <tr><td><code>//hpos1</code> / <code>//hpos2</code></td><td>見ているブロックを選択位置にする</td></tr>
+                        <tr><td><code>//chunk</code></td><td>現在いるチャンクを選択する</td></tr>
+                        <tr><td><code>//expand &lt;量&gt; [方向]</code></td><td>選択範囲を広げる</td></tr>
+                        <tr><td><code>//contract &lt;量&gt; [方向]</code></td><td>選択範囲を縮める</td></tr>
+                        <tr><td><code>//shift &lt;量&gt; &lt;方向&gt;</code></td><td>選択範囲だけを移動する</td></tr>
+                        <tr><td><code>//outset &lt;量&gt;</code></td><td>選択範囲を外側に広げる</td></tr>
+                        <tr><td><code>//inset &lt;量&gt;</code></td><td>選択範囲を内側に縮める</td></tr>
+                        <tr><td><code>//size</code></td><td>選択範囲のサイズを確認する</td></tr>
+                        <tr><td><code>//count &lt;ブロック&gt;</code></td><td>範囲内の指定ブロック数を数える</td></tr>
+                        <tr><td><code>//distr</code></td><td>範囲内のブロック分布を表示する</td></tr>
                       </tbody>
                     </table>
                   </div>
+                  <p>選択形状の例:</p>
+                  <pre>//sel cuboid
+//sel poly
+//sel ellipsoid
+//sel sphere
+//sel cyl
+//sel convex</pre>
 
                   <h5>範囲編集</h5>
-                  <div class="table-scroll">
+                  <div class="mod-table-wrap">
                     <table>
                       <thead>
-                        <tr>
-                          <th>コマンド</th>
-                          <th>用途</th>
-                        </tr>
+                        <tr><th>コマンド</th><th>内容</th></tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><code>//set &lt;block&gt;</code></td>
-                          <td>選択範囲を指定ブロックで埋めます。例: <code>//set stone</code></td>
-                        </tr>
-                        <tr>
-                          <td><code>//replace &lt;from&gt; &lt;to&gt;</code></td>
-                          <td>選択範囲内の特定ブロックだけを別ブロックに置き換えます。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//walls</code> / <code>//faces</code></td>
-                          <td>壁だけ、または外側の面だけを作ります。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//overlay</code></td>
-                          <td>地表の上に指定ブロックを重ねます。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//smooth</code></td>
-                          <td>地形をなめらかにします。荒れた地面の整地に使います。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//move</code> / <code>//stack</code></td>
-                          <td>選択範囲を移動、または同じ形で連続複製します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//regen</code></td>
-                          <td>選択範囲をワールド生成状態に戻します。大事な建築がある場所では注意が必要です。</td>
-                        </tr>
+                        <tr><td><code>//set &lt;ブロック&gt;</code></td><td>選択範囲を指定ブロックで埋める</td></tr>
+                        <tr><td><code>//replace &lt;元ブロック&gt; &lt;新ブロック&gt;</code></td><td>範囲内のブロックを置き換える</td></tr>
+                        <tr><td><code>//walls &lt;ブロック&gt;</code></td><td>選択範囲の壁だけを作る</td></tr>
+                        <tr><td><code>//faces &lt;ブロック&gt;</code></td><td>選択範囲の外側の面を作る</td></tr>
+                        <tr><td><code>//overlay &lt;ブロック&gt;</code></td><td>地表面にブロックを重ねる</td></tr>
+                        <tr><td><code>//center &lt;ブロック&gt;</code></td><td>選択範囲の中心にブロックを置く</td></tr>
+                        <tr><td><code>//smooth</code></td><td>地形をなめらかにする</td></tr>
+                        <tr><td><code>//move &lt;距離&gt; [方向]</code></td><td>選択範囲の中身を移動する</td></tr>
+                        <tr><td><code>//stack &lt;回数&gt; [方向]</code></td><td>選択範囲を連続複製する</td></tr>
+                        <tr><td><code>//regen</code></td><td>選択範囲をワールド生成状態に戻す</td></tr>
+                        <tr><td><code>//deform &lt;式&gt;</code></td><td>数式で地形や形状を変形する</td></tr>
+                        <tr><td><code>//hollow [厚さ] [ブロック]</code></td><td>選択範囲を中空にする</td></tr>
+                        <tr><td><code>//naturalize</code></td><td>地表を自然な土・石構成にする</td></tr>
+                        <tr><td><code>//line &lt;ブロック&gt; [太さ]</code></td><td>選択点を結ぶ線を作る</td></tr>
+                        <tr><td><code>//curve &lt;ブロック&gt; [太さ]</code></td><td>選択点を通る曲線を作る</td></tr>
+                        <tr><td><code>//forest</code></td><td>選択範囲に木を生成する</td></tr>
+                        <tr><td><code>//flora</code></td><td>選択範囲に草花を生成する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>よく使う例:</p>
+                  <pre>//set oak_planks
+//replace dirt grass_block
+//walls stone_bricks
+//stack 5 north
+//move 3 up</pre>
+
+                  <h5>生成系</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>//sphere &lt;ブロック&gt; &lt;半径&gt;</code></td><td>球を生成する</td></tr>
+                        <tr><td><code>//hsphere &lt;ブロック&gt; &lt;半径&gt;</code></td><td>中空の球を生成する</td></tr>
+                        <tr><td><code>//cyl &lt;ブロック&gt; &lt;半径&gt; [高さ]</code></td><td>円柱を生成する</td></tr>
+                        <tr><td><code>//hcyl &lt;ブロック&gt; &lt;半径&gt; [高さ]</code></td><td>中空の円柱を生成する</td></tr>
+                        <tr><td><code>//pyramid &lt;ブロック&gt; &lt;サイズ&gt;</code></td><td>ピラミッドを生成する</td></tr>
+                        <tr><td><code>//hpyramid &lt;ブロック&gt; &lt;サイズ&gt;</code></td><td>中空のピラミッドを生成する</td></tr>
+                        <tr><td><code>//generate &lt;ブロック&gt; &lt;式&gt;</code></td><td>数式に基づいて形状を生成する</td></tr>
+                        <tr><td><code>//generatebiome &lt;バイオーム&gt; &lt;式&gt;</code></td><td>数式に基づいてバイオームを生成する</td></tr>
+                        <tr><td><code>/forestgen &lt;サイズ&gt; [種類] [密度]</code></td><td>周囲に森を生成する</td></tr>
+                        <tr><td><code>/pumpkins &lt;サイズ&gt;</code></td><td>周囲にかぼちゃを生成する</td></tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <h5>コピー・貼り付け</h5>
-                  <div class="table-scroll">
+                  <h5>コピー・切り取り・貼り付け</h5>
+                  <div class="mod-table-wrap">
                     <table>
                       <thead>
-                        <tr>
-                          <th>コマンド</th>
-                          <th>用途</th>
-                        </tr>
+                        <tr><th>コマンド</th><th>内容</th></tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><code>//copy</code></td>
-                          <td>選択範囲を現在位置基準でコピーします。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//cut</code></td>
-                          <td>選択範囲を切り取り、クリップボードへ入れます。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//paste</code></td>
-                          <td>コピーした内容を現在位置基準で貼り付けます。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//rotate</code> / <code>//flip</code></td>
-                          <td>クリップボード内の建物を回転、または反転します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/clearclipboard</code></td>
-                          <td>クリップボードを空にします。</td>
-                        </tr>
+                        <tr><td><code>//copy</code></td><td>選択範囲をクリップボードにコピーする</td></tr>
+                        <tr><td><code>//cut</code></td><td>選択範囲を切り取ってクリップボードに入れる</td></tr>
+                        <tr><td><code>//paste</code></td><td>クリップボードの内容を貼り付ける</td></tr>
+                        <tr><td><code>//rotate &lt;角度&gt;</code></td><td>クリップボードを回転する</td></tr>
+                        <tr><td><code>//flip [方向]</code></td><td>クリップボードを反転する</td></tr>
+                        <tr><td><code>/clearclipboard</code></td><td>クリップボードを空にする</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>コピーと貼り付けは、プレイヤーの立ち位置が基準点になります。</p>
+                  <pre>建物を選択
+貼り付け時の基準にしたい場所に立つ
+//copy
+移動する
+//paste</pre>
+                  <p>向きを変えて貼り付けたい場合:</p>
+                  <pre>//copy
+//rotate 90
+//paste</pre>
+
+                  <h5>履歴操作</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>//undo</code></td><td>直前の WorldEdit 操作を取り消す</td></tr>
+                        <tr><td><code>//redo</code></td><td>取り消した操作をやり直す</td></tr>
+                        <tr><td><code>/clearhistory</code></td><td>編集履歴を消去する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>設定上の履歴数は <code>history-size=15</code> です。</p>
+
+                  <h5>移動系</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/unstuck</code></td><td>ブロックにはまった状態から抜ける</td></tr>
+                        <tr><td><code>/ascend</code></td><td>上の空間へ移動する</td></tr>
+                        <tr><td><code>/descend</code></td><td>下の空間へ移動する</td></tr>
+                        <tr><td><code>/ceil</code></td><td>天井付近へ移動する</td></tr>
+                        <tr><td><code>/thru</code></td><td>見ている方向の壁を通り抜ける</td></tr>
+                        <tr><td><code>/jumpto</code></td><td>見ているブロック付近へ移動する</td></tr>
+                        <tr><td><code>/up &lt;高さ&gt;</code></td><td>足元にブロックを置いて上へ移動する</td></tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <h5>生成・ブラシ・ツール</h5>
-                  <div class="table-scroll">
+                  <h5>ブラシ</h5>
+                  <p>ブラシは、手に持っているアイテムに編集効果を割り当てて、クリックした場所に形状や効果を適用する機能です。</p>
+                  <div class="mod-table-wrap">
                     <table>
                       <thead>
-                        <tr>
-                          <th>コマンド</th>
-                          <th>用途</th>
-                        </tr>
+                        <tr><th>コマンド</th><th>内容</th></tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><code>//sphere</code> / <code>//hsphere</code></td>
-                          <td>球体、または中空の球体を生成します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//cyl</code> / <code>//hcyl</code></td>
-                          <td>円柱、または中空の円柱を生成します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//pyramid</code> / <code>//hpyramid</code></td>
-                          <td>ピラミッド、または中空のピラミッドを生成します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/forestgen</code> / <code>/pumpkins</code></td>
-                          <td>森やカボチャをまとめて生成します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/brush sphere|cylinder|smooth|clipboard|biome|none</code></td>
-                          <td>持っている道具へブラシ効果を割り当てます。<code>none</code> で解除します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/mask</code> / <code>/material</code> / <code>/size</code> / <code>/range</code></td>
-                          <td>ブラシの対象ブロック、材料、サイズ、届く距離を調整します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/tool selwand|navwand|repl|floodfill|lrbuild|unbind</code></td>
-                          <td>手持ち道具に選択、移動、置換、塗りつぶし、長距離建築などの機能を割り当てます。</td>
-                        </tr>
+                        <tr><td><code>/brush sphere &lt;ブロック&gt; &lt;半径&gt;</code></td><td>球形ブラシを設定する</td></tr>
+                        <tr><td><code>/brush cylinder &lt;ブロック&gt; &lt;半径&gt; [高さ]</code></td><td>円柱ブラシを設定する</td></tr>
+                        <tr><td><code>/brush clipboard</code></td><td>クリップボード内容を貼るブラシにする</td></tr>
+                        <tr><td><code>/brush smooth</code></td><td>地形をなめらかにするブラシにする</td></tr>
+                        <tr><td><code>/brush extinguish</code></td><td>火を消すブラシにする</td></tr>
+                        <tr><td><code>/brush gravity</code></td><td>浮いたブロックを落とすブラシにする</td></tr>
+                        <tr><td><code>/brush butcher</code></td><td>範囲内の Mob を削除するブラシにする</td></tr>
+                        <tr><td><code>/brush heightmap</code></td><td>高さマップ系のブラシを設定する</td></tr>
+                        <tr><td><code>/brush deform &lt;式&gt;</code></td><td>数式で変形するブラシにする</td></tr>
+                        <tr><td><code>/brush set &lt;ブロック&gt;</code></td><td>表面を指定ブロックにするブラシにする</td></tr>
+                        <tr><td><code>/brush forest</code></td><td>木を生やすブラシにする</td></tr>
+                        <tr><td><code>/brush raise</code></td><td>地形を盛り上げるブラシにする</td></tr>
+                        <tr><td><code>/brush lower</code></td><td>地形を下げるブラシにする</td></tr>
+                        <tr><td><code>/brush snow</code></td><td>雪を積もらせるブラシにする</td></tr>
+                        <tr><td><code>/brush biome &lt;バイオーム&gt;</code></td><td>バイオームを変更するブラシにする</td></tr>
+                        <tr><td><code>/brush none</code></td><td>現在のブラシを解除する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>ブラシの最大半径は設定上 <code>max-brush-radius=10</code> です。</p>
+                  <p>基本例:</p>
+                  <pre>石を持つ
+/brush sphere stone 3
+地面をクリック</pre>
+                  <p>これでクリックした地点を中心に、半径 3 の石の球形ブラシが実行されます。</p>
+                  <p>マスクを組み合わせる例:</p>
+                  <pre>/brush sphere grass_block 3
+/mask dirt</pre>
+                  <p>この状態では、土ブロックにだけブラシ効果が適用されます。</p>
+
+                  <h5>ツール</h5>
+                  <p>ツールは、手に持っているアイテムに特殊な編集機能を割り当てます。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/tool selwand</code></td><td>現在のアイテムを選択ワンドにする</td></tr>
+                        <tr><td><code>/tool navwand</code></td><td>現在のアイテムをナビゲーションワンドにする</td></tr>
+                        <tr><td><code>/tool info</code></td><td>クリックしたブロック情報を見るツールにする</td></tr>
+                        <tr><td><code>/tool tree</code></td><td>木を生成するツールにする</td></tr>
+                        <tr><td><code>/tool stacker</code></td><td>クリック方向へブロックを積むツールにする</td></tr>
+                        <tr><td><code>/tool repl &lt;ブロック&gt;</code></td><td>クリックしたブロックを置き換えるツールにする</td></tr>
+                        <tr><td><code>/tool cycler</code></td><td>ブロック状態を切り替えるツールにする</td></tr>
+                        <tr><td><code>/tool floodfill &lt;ブロック&gt; &lt;範囲&gt;</code></td><td>つながった同種ブロックを塗りつぶすツールにする</td></tr>
+                        <tr><td><code>/tool deltree</code></td><td>木を削除するツールにする</td></tr>
+                        <tr><td><code>/tool farwand</code></td><td>遠くのブロックを選択できるワンドにする</td></tr>
+                        <tr><td><code>/tool lrbuild &lt;左クリック用&gt; &lt;右クリック用&gt;</code></td><td>左右クリックで別ブロックを置くツールにする</td></tr>
+                        <tr><td><code>/tool unbind</code></td><td>現在のツールを解除する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p><code>/tool none</code> やグローバルコマンドの <code>/none</code> も登録されていますが、このバージョンではツール系のグローバル名は将来的に削除予定という警告文が含まれているため、基本は <code>/tool unbind</code> 形式で覚えるのが安全です。</p>
+                  <p>ツール補助コマンド:</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/mask &lt;条件&gt;</code></td><td>ツールやブラシの対象ブロックを制限する</td></tr>
+                        <tr><td><code>/material &lt;ブロック&gt;</code></td><td>ツールやブラシの素材を変更する</td></tr>
+                        <tr><td><code>/range &lt;距離&gt;</code></td><td>ツールやブラシの射程を変更する</td></tr>
+                        <tr><td><code>/size &lt;サイズ&gt;</code></td><td>ツールやブラシのサイズを変更する</td></tr>
+                        <tr><td><code>/tracemask &lt;条件&gt;</code></td><td>視線判定の対象ブロックを制限する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>置き換えツールの例:</p>
+                  <pre>棒を持つ
+/tool repl stone_bricks
+置き換えたいブロックを左クリック</pre>
+                  <p><code>/tool repl</code> は、右クリックでクリックしたブロックを素材として読み取り、置き換え先を切り替える動作も持っています。</p>
+
+                  <h5>スーパーピッケル</h5>
+                  <p>スーパーピッケルは、ブロック破壊を強化する機能です。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>//</code></td><td>スーパーピッケルの有効・無効を切り替える</td></tr>
+                        <tr><td><code>/sp single</code></td><td>1 ブロック破壊モード</td></tr>
+                        <tr><td><code>/sp area &lt;サイズ&gt;</code></td><td>周囲の範囲をまとめて破壊する</td></tr>
+                        <tr><td><code>/sp recursive &lt;サイズ&gt;</code></td><td>つながった同種ブロックをまとめて破壊する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>設定上の最大サイズは <code>max-super-pickaxe-size=5</code> です。</p>
+
+                  <h5>バイオーム</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/biomelist</code></td><td>使用可能なバイオーム一覧を表示する</td></tr>
+                        <tr><td><code>/biomeinfo</code></td><td>現在地点のバイオーム情報を表示する</td></tr>
+                        <tr><td><code>//setbiome &lt;バイオーム&gt;</code></td><td>選択範囲のバイオームを変更する</td></tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <h5>履歴・移動・保存</h5>
-                  <div class="table-scroll">
+                  <h5>チャンク</h5>
+                  <div class="mod-table-wrap">
                     <table>
                       <thead>
-                        <tr>
-                          <th>コマンド</th>
-                          <th>用途</th>
-                        </tr>
+                        <tr><th>コマンド</th><th>内容</th></tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><code>//undo</code> / <code>//redo</code></td>
-                          <td>直前の編集を取り消す、またはやり直します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/clearhistory</code></td>
-                          <td>編集履歴をクリアします。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/unstuck</code> / <code>/ascend</code> / <code>/descend</code></td>
-                          <td>詰まり脱出、上の空間へ移動、下の空間へ移動を行います。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/ceil</code> / <code>/thru</code> / <code>/jumpto</code> / <code>/up</code></td>
-                          <td>天井への移動、壁抜け、見ている場所への移動、上方向への足場移動を行います。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/schem save|load|delete|list|formats</code></td>
-                          <td>建物データを schematic として保存、読み込み、削除、一覧表示します。</td>
-                        </tr>
-                        <tr>
-                          <td><code>//limit</code> / <code>//fast</code></td>
-                          <td>編集上限の設定、または高速編集モードの切り替えを行います。</td>
-                        </tr>
-                        <tr>
-                          <td><code>/worldedit reload</code> / <code>/worldedit report</code></td>
-                          <td>WorldEdit 設定の再読み込み、または環境レポート出力を行います。</td>
-                        </tr>
+                        <tr><td><code>/chunkinfo</code></td><td>現在チャンクの情報を表示する</td></tr>
+                        <tr><td><code>/listchunks</code></td><td>選択範囲に含まれるチャンクを一覧表示する</td></tr>
+                        <tr><td><code>/delchunks</code></td><td>チャンク削除用の情報を出力する</td></tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <h4>操作方法の例</h4>
-                  <ol class="steps">
-                    <li>
-                      <div><strong>範囲を選ぶ</strong><span><code>//wand</code> で木の斧を出し、左クリックで始点、右クリックで終点を選びます。</span></div>
-                    </li>
-                    <li>
-                      <div><strong>広さを確認する</strong><span><code>//size</code> でブロック数を見ます。大きすぎる場合は範囲を縮めます。</span></div>
-                    </li>
-                    <li>
-                      <div><strong>編集する</strong><span><code>//set stone</code>、<code>//replace dirt grass_block</code>、<code>//walls oak_planks</code> などを実行します。</span></div>
-                    </li>
-                    <li>
-                      <div><strong>ミスを戻す</strong><span>間違えたらすぐ <code>//undo</code>。戻しすぎた場合は <code>//redo</code> で戻します。</span></div>
-                    </li>
-                  </ol>
+                  <h5>スキーマティック</h5>
+                  <p>建築物をファイルとして保存・読み込みする機能です。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/schem save &lt;形式&gt; &lt;名前&gt;</code></td><td>クリップボード内容を保存する</td></tr>
+                        <tr><td><code>/schem load &lt;名前&gt;</code></td><td>スキーマティックを読み込む</td></tr>
+                        <tr><td><code>/schem delete &lt;名前&gt;</code></td><td>スキーマティックを削除する</td></tr>
+                        <tr><td><code>/schem list</code></td><td>保存済みスキーマティックを一覧表示する</td></tr>
+                        <tr><td><code>/schem formats</code></td><td>対応形式を表示する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>基本例:</p>
+                  <pre>建物を選択
+//copy
+/schem save sponge house01
+/schem load house01
+//paste</pre>
+                  <p>設定上の保存先ディレクトリ名は <code>schematics</code> です。</p>
+
+                  <h5>ユーティリティ</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>//fill &lt;ブロック&gt; &lt;半径&gt; [深さ]</code></td><td>穴やくぼみを埋める</td></tr>
+                        <tr><td><code>//fillr &lt;ブロック&gt; &lt;半径&gt;</code></td><td>再帰的に空間を埋める</td></tr>
+                        <tr><td><code>//drain &lt;半径&gt;</code></td><td>水や溶岩を排出する</td></tr>
+                        <tr><td><code>/fixlava &lt;半径&gt;</code></td><td>溶岩の流れを整える</td></tr>
+                        <tr><td><code>/fixwater &lt;半径&gt;</code></td><td>水の流れを整える</td></tr>
+                        <tr><td><code>/removeabove &lt;サイズ&gt; [高さ]</code></td><td>上方向のブロックを削除する</td></tr>
+                        <tr><td><code>/removebelow &lt;サイズ&gt; [深さ]</code></td><td>下方向のブロックを削除する</td></tr>
+                        <tr><td><code>/removenear &lt;ブロック&gt; &lt;サイズ&gt;</code></td><td>近くの指定ブロックを削除する</td></tr>
+                        <tr><td><code>/replacenear &lt;サイズ&gt; &lt;元&gt; &lt;新&gt;</code></td><td>近くのブロックを置き換える</td></tr>
+                        <tr><td><code>/snow &lt;半径&gt;</code></td><td>周囲に雪を積もらせる</td></tr>
+                        <tr><td><code>/thaw &lt;半径&gt;</code></td><td>周囲の雪や氷を溶かす</td></tr>
+                        <tr><td><code>/green &lt;半径&gt;</code></td><td>周囲を草地化する</td></tr>
+                        <tr><td><code>/extinguish &lt;半径&gt;</code></td><td>周囲の火を消す</td></tr>
+                        <tr><td><code>/butcher [半径]</code></td><td>Mob を削除する</td></tr>
+                        <tr><td><code>/remove &lt;種類&gt; &lt;半径&gt;</code></td><td>指定種類のエンティティを削除する</td></tr>
+                        <tr><td><code>//calculate &lt;式&gt;</code></td><td>数式を計算する</td></tr>
+                        <tr><td><code>//help</code></td><td>WorldEdit のヘルプを表示する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h5>設定・管理</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>//limit &lt;数&gt;</code></td><td>自分の最大編集ブロック数を設定する</td></tr>
+                        <tr><td><code>//timeout &lt;秒&gt;</code></td><td>処理タイムアウトを設定する</td></tr>
+                        <tr><td><code>//fast</code></td><td>高速モードを切り替える</td></tr>
+                        <tr><td><code>//perf</code></td><td>パフォーマンス関連設定を表示・変更する</td></tr>
+                        <tr><td><code>//reorder</code></td><td>ブロック変更順序を調整する</td></tr>
+                        <tr><td><code>//drawsel</code></td><td>サーバー側の選択範囲表示を切り替える</td></tr>
+                        <tr><td><code>//world &lt;ワールド&gt;</code></td><td>対象ワールドを切り替える</td></tr>
+                        <tr><td><code>/gmask &lt;条件&gt;</code></td><td>グローバルマスクを設定する</td></tr>
+                        <tr><td><code>/toggleplace</code></td><td>配置基準を現在位置と選択位置で切り替える</td></tr>
+                        <tr><td><code>/searchitem &lt;名前&gt;</code></td><td>アイテム名を検索する</td></tr>
+                        <tr><td><code>/worldedit version</code></td><td>WorldEdit のバージョンを表示する</td></tr>
+                        <tr><td><code>/worldedit reload</code></td><td>WorldEdit 設定を再読み込みする</td></tr>
+                        <tr><td><code>/worldedit report</code></td><td>診断レポートを生成する</td></tr>
+                        <tr><td><code>/worldedit trace</code></td><td>デバッグ用トレースを行う</td></tr>
+                        <tr><td><code>/worldedit cui</code></td><td>CUI 関連の通信を行う</td></tr>
+                        <tr><td><code>/worldedit tz</code></td><td>タイムゾーンを設定する</td></tr>
+                        <tr><td><code>/worldedit help</code></td><td>WorldEdit ヘルプを表示する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p><code>//fast</code> を有効にすると処理は速くなりますが、光源更新などが正しく反映されない場合があります。</p>
+
+                  <h5>スクリプト・スナップショット</h5>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>コマンド</th><th>内容</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><code>/cs &lt;スクリプト&gt;</code></td><td>CraftScript を実行する</td></tr>
+                        <tr><td><code>/.s</code></td><td>直前のスクリプト実行を繰り返す</td></tr>
+                        <tr><td><code>/snapshot list</code></td><td>スナップショット一覧を表示する</td></tr>
+                        <tr><td><code>/snapshot use</code></td><td>使用するスナップショットを選ぶ</td></tr>
+                        <tr><td><code>/snapshot sel</code></td><td>選択範囲に関係するスナップショットを選ぶ</td></tr>
+                        <tr><td><code>/snapshot before</code></td><td>指定時刻より前のスナップショットを選ぶ</td></tr>
+                        <tr><td><code>/snapshot after</code></td><td>指定時刻より後のスナップショットを選ぶ</td></tr>
+                        <tr><td><code>/restore</code></td><td>スナップショットから復元する</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h4>よく使う操作手順</h4>
+
+                  <h5>選択範囲をブロックで埋める</h5>
+                  <pre>//wand
+木の斧で 1 点目を左クリック
+木の斧で 2 点目を右クリック
+//set stone</pre>
+
+                  <h5>床だけを張り替える</h5>
+                  <pre>//wand
+範囲を選択
+//replace grass_block polished_andesite</pre>
+
+                  <h5>建物の壁だけを作る</h5>
+                  <pre>//wand
+建物サイズの範囲を選択
+//walls stone_bricks</pre>
+
+                  <h5>建築物をコピーして貼り付ける</h5>
+                  <pre>//wand
+建築物を選択
+基準にしたい場所に立つ
+//copy
+貼り付けたい場所へ移動
+//paste</pre>
+
+                  <h5>同じ建物を横に並べる</h5>
+                  <pre>建築物を選択
+//stack 5 east</pre>
+
+                  <h5>ブラシで地形を盛る</h5>
+                  <pre>棒などのアイテムを持つ
+/brush sphere dirt 4
+地形をクリック</pre>
+                  <p>解除するとき:</p>
+                  <pre>/brush none</pre>
+
+                  <h5>水を抜く</h5>
+                  <pre>水辺に立つ
+//drain 20</pre>
+
+                  <h5>操作を取り消す</h5>
+                  <pre>//undo</pre>
+                  <p>やり直す場合:</p>
+                  <pre>//redo</pre>
 
                   <h4>ブロックID一覧（WorldEdit で使えるブロック名）</h4>
                   <p><code>//set</code> や <code>//replace</code> などのコマンドに渡せる代表的なブロックIDをまとめました。出典: <a href="https://n5v.net/command/block-item-id/" target="_blank" rel="noopener noreferrer">n5v.net｜マイクラ ブロック・アイテムID一覧</a>。カテゴリーをクリックすると一覧が開きます。</p>
@@ -7871,9 +8163,13 @@ I I</code></pre>
 
                   <h4>注意点</h4>
                   <ul>
-                    <li>大きすぎる範囲で <code>//set</code> や <code>//replace</code> を使うと、サーバーやワールドが重くなります。最初に <code>//limit 10000</code> のような上限を決めると安全です。</li>
+                    <li>大きすぎる範囲に <code>//set</code> や <code>//replace</code> を使うと、ワールドが重くなったりサーバーが停止したりする可能性があります。</li>
+                    <li>最初は <code>//limit 10000</code> のように編集上限を設定しておくと安全です。</li>
+                    <li>重要なワールドでは、作業前にバックアップを取ってください。</li>
+                    <li>サーバー環境では、各コマンドに権限が必要な場合があります。授業用サーバーでは管理者に権限を確認してください。</li>
+                    <li>設定では <code>use-inventory=false</code> のため、デフォルトではインベントリ内のブロック所持数を消費せずに編集できます。</li>
+                    <li>設定上、岩盤、TNT、松明、苗木など一部ブロックは制限対象に含まれています。</li>
                     <li><code>//copy</code> と <code>//paste</code> は、コピーした時の自分の立ち位置を基準にします。思った位置に貼れないときは、コピー時の立ち位置を確認します。</li>
-                    <li>サーバーでは WorldEdit 権限がないとコマンドが使えません。授業用サーバーでは管理者に権限を確認してください。</li>
                     <li>ブロックID一覧は Minecraft 1.20 以降の正規名（Resource Location）です。1.12.2 など古い WorldEdit ではブロック名や数値ID（例: <code>35:14</code>）の指定が必要になることがあります。</li>
                   </ul>
                 </div>
