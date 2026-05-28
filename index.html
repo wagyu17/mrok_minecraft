@@ -1132,7 +1132,7 @@
 
       <hr class="menu-divider">
       <div class="menu-section">作る・打つ</div>
-      <button class="menu-item" data-target="clipchamp"><span class="menu-icon">C</span><span>Clipchamp 動画</span><span
+      <button class="menu-item" data-target="clipchamp"><span class="menu-icon">動</span><span>動画編集</span><span
           class="menu-chev">▶</span></button>
       <button class="menu-item" data-target="typing"><span class="menu-icon">T</span><span>タイピング</span><span
           class="menu-chev">▶</span></button>
@@ -1159,13 +1159,13 @@
         <section class="section is-active" id="hero">
           <h1>マイクラ自習ガイド</h1>
           <p class="lead">
-            マイクラのコマンド、CurseForgeのMOD、クラフターズコロニーの配布ワールド、Clipchampの動画編集を見るページです。わからなくなったら「どこを見るか」「何を押すか」「どこに保存されたか」を確認します。
+            マイクラのコマンド、CurseForgeのMOD、クラフターズコロニーの配布ワールド、OBS StudioとCapCutを使った動画編集を見るページです。わからなくなったら「どこを見るか」「何を押すか」「どこに保存されたか」を確認します。
           </p>
           <p class="lead">左のメニューから章を1つ選ぶと、その章だけが大きく開きます。最後まで終わったら「次へ」で進みます。</p>
           <div class="map">
             <div class="map-tile water-tile">Windows</div>
             <div class="map-tile grass-tile">マイクラ</div>
-            <div class="map-tile sand-tile">Clipchamp</div>
+            <div class="map-tile sand-tile">動画編集</div>
             <div class="map-tile stone-tile">タイピング</div>
           </div>
         </section>
@@ -1195,7 +1195,7 @@
               </div>
             </div>
             <div class="fake-window">
-              <div class="fake-title"><span>マイクラ / Clipchamp</span><span>□ ×</span></div>
+              <div class="fake-title"><span>マイクラ / CapCut</span><span>□ ×</span></div>
               <div class="fake-body">
                 <div class="folder-row">
                   <div class="folder-icon"></div><span>右: 実際に操作する</span>
@@ -1223,7 +1223,7 @@
               <div><strong>上のバーを持つと画面を動かせる</strong><span>ウィンドウの一番上をドラッグすると、画面の場所を変えられます。</span></div>
             </li>
             <li>
-              <div><strong>下のタスクバーで戻る</strong><span>画面を見失ったら、下にあるアイコンからマイクラ、Clipchamp、エクスプローラー、このページに戻ります。</span></div>
+              <div><strong>下のタスクバーで戻る</strong><span>画面を見失ったら、下にあるアイコンからマイクラ、OBS Studio、CapCut、エクスプローラー、このページに戻ります。</span></div>
             </li>
             <li>
               <div><strong>エクスプローラーでファイルを探す</strong><span>黄色いフォルダのマークを開くと、デスクトップ、ダウンロード、ビデオ、ピクチャを探せます。</span></div>
@@ -1274,7 +1274,7 @@
           <p class="lead">「どこに保存されたか」を見つけられると、自分で動画やMODを扱えるようになります。3つの場所を順番に確認します。</p>
           <div class="place-grid">
             <div class="place-card">
-              <strong>Clipchampの動画</strong>書き出す前に「保存先」を見ます。見つからない時は、エクスプローラーで「ビデオ」「ダウンロード」「デスクトップ」を順に探します。動画は `.mp4`
+              <strong>CapCutの動画</strong>書き出す前に「保存先」を見ます。見つからない時は、エクスプローラーで「ビデオ」「ダウンロード」「デスクトップ」を順に探します。動画は `.mp4`
               が多いです。</div>
             <div class="place-card"><strong>ダウンロードしたMOD</strong>まず「ダウンロード」フォルダを見ます。`.zip` や `.jar` のファイルは、勝手に開かず大人に見せます。
             </div>
@@ -2129,7 +2129,212 @@
           <h1>MOD解説</h1>
           <p class="lead">mod操作解説フォルダ内のMarkdownを、MOD名ごとの開閉フォルダにまとめています。知りたいMOD名を開いて、キー割り当て、基本操作、詳しい使い方、競合しやすいキーを確認します。
           </p>
+          <div class="mod-note-grid">
+            <a class="mod-note" href="tacz-awm-guide.html">
+              <strong>TaCZ AWM Sniper PDF Guide</strong>
+              <p>海外向けのPDF販売用記事です。YouTubeの説明欄から誘導し、TaCZのAWM操作、基本キー、PDF購入導線につなげます。</p>
+            </a>
+          </div>
           <div class="mod-folder-list">
+            <details class="mod-folder" id="mod-guide-dependencies">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">前提MOD早見表</span><span
+                  class="mod-folder-meta">各MODを使う時に必要なライブラリ・前提MODを確認する表</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>前提MOD早見表</h3>
+                  <p>jar内の <code>mods.toml</code>、<code>neoforge.mods.toml</code>、<code>fabric.mod.json</code> を見直した前提MOD一覧です。Minecraft本体、Forge、NeoForge、Fabric Loader、Javaのバージョン指定は環境条件として扱い、ここでは主に追加で入れるライブラリMODを中心にまとめています。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>MOD</th>
+                          <th>必要な前提MOD</th>
+                          <th>補足</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Create 1.21.1 構成</td>
+                          <td><code>Flywheel</code>、<code>Ponder</code>。Create New Age は <code>Create</code> と <code>esl</code>、Create Deco は <code>Create</code> が必要。</td>
+                          <td><code>Cloth Config API</code> は設定画面用に同梱。JEI、Xaero's World Map、Sodium、Lithiumなどは連携・任意依存。</td>
+                        </tr>
+                        <tr>
+                          <td>Farmer's Delight</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td><code>CraftTweaker</code> は任意連携。</td>
+                        </tr>
+                        <tr>
+                          <td>JEI</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td>レシピ確認用の便利MOD。多くのMODから任意連携として参照されます。</td>
+                        </tr>
+                        <tr>
+                          <td>Epic Fight 系</td>
+                          <td>Sword Soaring は <code>Epic Fight</code> と <code>Invincible Lib</code> が必要。Invincible Lib は <code>Epic Fight</code> が必要。</td>
+                          <td>Epic Fight本体には追加の必須ライブラリは検出されませんでした。</td>
+                        </tr>
+                        <tr>
+                          <td>JujutsuCraft 系</td>
+                          <td><code>GeckoLib</code>、<code>Player Animator</code></td>
+                          <td>JujutsuCraft本体の <code>mods.toml</code> に必須依存として記載があります。Curios、ParCool、Patchouli、ProjectE、JEIなどは同梱・関連MODとして扱います。</td>
+                        </tr>
+                        <tr>
+                          <td>Kimetsu no Yaiba</td>
+                          <td><code>GeckoLib</code>、<code>Player Animator</code></td>
+                          <td>jar内では任意依存扱いの記載ですが、この構成では前提として同梱されているため必要MODとして扱います。</td>
+                        </tr>
+                        <tr>
+                          <td>Mahou Tsukai</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td><code>jousting</code> は任意連携。</td>
+                        </tr>
+                        <tr>
+                          <td>TaCZ</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td><code>Cloth Config API</code> は設定画面、<code>Shoulder Surfing</code> は三人称連携用の任意MODです。</td>
+                        </tr>
+                        <tr>
+                          <td>Prime Punch Patch</td>
+                          <td><code>GeckoLib</code>、<code>Player Animator</code>、<code>Pehkui</code>、<code>Photon</code></td>
+                          <td>本体jarでは一部が任意依存扱いですが、実際のフォルダ構成では前提として同梱されています。</td>
+                        </tr>
+                        <tr>
+                          <td>WorldEdit</td>
+                          <td>Forge版は追加の必須ライブラリなし。Fabricで使う場合はFabric API系モジュールが必要。</td>
+                          <td>このjarはForge/Fabric両対応のメタデータを含みます。</td>
+                        </tr>
+                        <tr>
+                          <td>Techguns</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td><code>mcmod.info</code> の依存リストは空でした。</td>
+                        </tr>
+                        <tr>
+                          <td>AppleSkin</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td>NeoForge環境のクライアント側情報表示MODです。</td>
+                        </tr>
+                        <tr>
+                          <td>Jade</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td>NeoForge依存のみ確認。レシピ表示はJEI/REI/EMIなどがあると便利です。</td>
+                        </tr>
+                        <tr>
+                          <td>ModernFix</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td><code>JEI</code> は任意連携。</td>
+                        </tr>
+                        <tr>
+                          <td>Mouse Tweaks</td>
+                          <td><code>Fabric API</code></td>
+                          <td>このjarはFabric版です。</td>
+                        </tr>
+                        <tr>
+                          <td>Sophisticated Backpacks</td>
+                          <td><code>Sophisticated Core</code></td>
+                          <td><code>sophisticatedcore</code> が必須です。現在の同名フォルダ内には本体jarのみなので、導入時は別途用意します。</td>
+                        </tr>
+                        <tr>
+                          <td>Waystones</td>
+                          <td><code>Balm</code></td>
+                          <td>Balmはライブラリ系MODとして別欄にまとめています。</td>
+                        </tr>
+                        <tr>
+                          <td>Xaero's World Map</td>
+                          <td><code>XaeroLib</code></td>
+                          <td>Xaero's Minimap、Better PVP、Open Parties and Claimsは任意連携です。</td>
+                        </tr>
+                        <tr>
+                          <td>Bookshelf</td>
+                          <td><code>Fabric API</code></td>
+                          <td>このjarはFabric版のライブラリMODです。</td>
+                        </tr>
+                        <tr>
+                          <td>Konkrete</td>
+                          <td><code>Fabric API</code></td>
+                          <td>このjarはFabric版のライブラリMODです。</td>
+                        </tr>
+                        <tr>
+                          <td>Balm</td>
+                          <td>追加の必須ライブラリなし</td>
+                          <td>Waystonesなどから使われるNeoForge系ライブラリMODです。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="mod-folder" id="mod-guide-library-mods">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">ライブラリ系MOD</span><span
+                  class="mod-folder-meta">前提MODとして入れるものをまとめて確認する欄</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>ライブラリ系MOD</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Balm%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Balm curseforge mod</a> / <a href="https://www.google.com/search?q=Bookshelf%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Bookshelf curseforge mod</a> / <a href="https://www.google.com/search?q=Konkrete%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Konkrete curseforge mod</a></p>
+                  <p>ライブラリ系MODは、単体で遊び方を増やすというより、他のMODを動かすための土台です。通常プレイでは「必要なMODと一緒に入れておくもの」として扱います。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>ライブラリMOD</th>
+                          <th>必要になる場面</th>
+                          <th>キー・コマンド</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Balm</td>
+                          <td>Waystonesなど、BlayTheNinth系MODの前提。NeoForge版。</td>
+                          <td>通常キーなし。内部・開発向けに <code>/balm dev export config &lt;mod&gt; icons [filter]</code> 系の候補あり。</td>
+                        </tr>
+                        <tr>
+                          <td>Bookshelf</td>
+                          <td>Darkhax系MODで使われる共通ライブラリ。このjarはFabric版で、Fabric APIが必要。</td>
+                          <td>通常キーなし。<code>/bookshelf debug</code>、<code>/bookshelf enchant</code>、<code>/bookshelf hand</code>、<code>/bookshelf rename</code> など開発・検証向けコマンド候補あり。</td>
+                        </tr>
+                        <tr>
+                          <td>Konkrete</td>
+                          <td>Keksuccino系MODの画面・設定・UI処理を支えるライブラリ。このjarはFabric版で、Fabric APIが必要。</td>
+                          <td>通常キーなし。<code>/konkretedebug</code> 系の画面・マウス・キー入力デバッグ候補あり。</td>
+                        </tr>
+                        <tr>
+                          <td>GeckoLib</td>
+                          <td>JujutsuCraft、Kimetsu no Yaiba、Prime Punch Patchなどのアニメーション表示に必要。</td>
+                          <td>通常プレイ用のキー操作はありません。</td>
+                        </tr>
+                        <tr>
+                          <td>Player Animator</td>
+                          <td>JujutsuCraft、Kimetsu no Yaiba、Prime Punch Patchなどのプレイヤーモーションに必要。</td>
+                          <td>通常プレイ用のキー操作はありません。</td>
+                        </tr>
+                        <tr>
+                          <td>Cloth Config API</td>
+                          <td>TaCZやCreate構成などで設定画面を開くために使われることがあります。</td>
+                          <td>単体操作ではなく、各MODの設定画面から呼び出されます。</td>
+                        </tr>
+                        <tr>
+                          <td>Sophisticated Core</td>
+                          <td>Sophisticated Backpacksの必須前提MOD。</td>
+                          <td>バックパック本体を動かす土台です。</td>
+                        </tr>
+                        <tr>
+                          <td>XaeroLib</td>
+                          <td>Xaero's World Mapの必須前提MOD。</td>
+                          <td>ワールドマップ本体を動かす土台です。</td>
+                        </tr>
+                        <tr>
+                          <td>Flywheel / Ponder</td>
+                          <td>Create 6系で要求される表示・チュートリアル系ライブラリ。</td>
+                          <td>Create本体から利用されます。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </details>
+
             <details class="mod-folder" id="mod-guide-create">
               <summary><span class="folder-icon" aria-hidden="true"></span><span class="mod-folder-name">Create 1.21.1
                   構成</span><span class="mod-folder-meta">工業機械と動力伝達で自動化できるmod構成</span></summary>
@@ -2137,6 +2342,8 @@
                 <div class="mod-doc">
                   <h3>Create 1.21.1 構成 キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Create%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Create curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>Create本体は <code>Flywheel</code> と <code>Ponder</code> が必須です。Create New Ageは <code>Create</code> と <code>esl</code>、Create Decoは <code>Create</code> が必須です。<code>Cloth Config API</code> は設定画面用、JEIやXaero's World Mapなどは任意連携です。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>create-1.21.1-6.0.9.jar</code></li>
@@ -2806,6 +3013,8 @@
                 <div class="mod-doc">
                   <h3>Farmer's Delight キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Farmer%27s%20Delight%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Farmer's Delight curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>追加の必須ライブラリMODは検出されませんでした。<code>CraftTweaker</code> は任意連携です。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>FarmersDelight-1.21.1-1.3.2.jar</code></li>
@@ -2950,6 +3159,8 @@
                 <div class="mod-doc">
                   <h3>JEI キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=JEI%20curseforge%20mod" target="_blank" rel="noopener noreferrer">JEI curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>追加の必須ライブラリMODは検出されませんでした。ほかのMODからレシピ連携先として参照されることが多いMODです。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>jei-1.21.1-neoforge-19.27.0.336.jar</code></li>
@@ -3171,6 +3382,8 @@
                 <div class="mod-doc">
                   <h3>Epic Fight 系 mod キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Epic%20Fight%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Epic Fight curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>Epic Fight本体には追加の必須ライブラリMODは検出されませんでした。Sword Soaringは <code>Epic Fight</code> と <code>Invincible Lib</code>、Invincible Libは <code>Epic Fight</code> が必須です。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>epic-fight-20.14.5-mc1.20.1-forge.jar</code></li>
@@ -3568,6 +3781,8 @@
                 <div class="mod-doc">
                   <h3>JujutsuCraft 系 mod キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=JujutsuCraft%20curseforge%20mod" target="_blank" rel="noopener noreferrer">JujutsuCraft curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>JujutsuCraft本体は <code>GeckoLib</code> と <code>Player Animator</code> が必須です。Curios、ParCool、Patchouli、ProjectE、JEI、Lost Cities、RPG-HUDはこの構成の同梱・関連MODとして扱います。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>JujutsuCraft-ver48-forge-1.20.1.jar</code></li>
@@ -4084,6 +4299,8 @@
                 <div class="mod-doc">
                   <h3>Kimetsu no Yaiba mod キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Kimetsu%20no%20Yaiba%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Kimetsu no Yaiba curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p><code>GeckoLib</code> と <code>Player Animator</code> を前提MODとして扱います。jar内では任意依存扱いの記載ですが、この構成では同梱されています。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>KimetsunoYaiba-ver3-forge-1.20.1.jar</code></li>
@@ -4208,6 +4425,8 @@
                 <div class="mod-doc">
                   <h3>Mahou Tsukai キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Mahou%20Tsukai%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Mahou Tsukai curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>追加の必須ライブラリMODは検出されませんでした。<code>jousting</code> は任意連携です。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>mahoutsukai-1.20.1-v1.34.80.jar</code></li>
@@ -4379,6 +4598,8 @@
                   <div class="mod-doc">
                     <h3>TaCZ キー割り当てと操作方法</h3>
                     <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=TaCZ%20curseforge%20mod" target="_blank" rel="noopener noreferrer">TaCZ curseforge mod</a></p>
+                    <h4>前提MOD</h4>
+                    <p>追加の必須ライブラリMODは検出されませんでした。<code>Cloth Config API</code> は設定画面用、<code>Shoulder Surfing</code> は三人称連携用の任意MODです。</p>
                     <h4>解析元</h4>
                     <ul>
                       <li><code>tacz-1.20.1-1.1.8-release.jar</code></li>
@@ -6501,6 +6722,8 @@ I I</code></pre>
                 <div class="mod-doc">
                   <h3>Prime Punch Patch キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Prime%20Punch%20Patch%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Prime Punch Patch curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p><code>GeckoLib</code>、<code>Player Animator</code>、<code>Pehkui</code>、<code>Photon</code> を前提MODとして扱います。本体jarでは一部が任意依存扱いですが、この構成では同梱されています。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>primepunchpatch.jar</code></li>
@@ -6897,11 +7120,13 @@ I I</code></pre>
                 <div class="mod-doc">
                   <h3>WorldEdit キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=WorldEdit%20curseforge%20mod" target="_blank" rel="noopener noreferrer">WorldEdit curseforge mod</a></p>
-
                   <h4>MOD概要</h4>
                   <p>
                     WorldEdit は、ゲーム内で広範囲のブロック編集、建築物のコピー・貼り付け、地形生成、ブラシ編集などを行えるワールド編集 MOD です。通常のキー操作よりも、専用アイテムとコマンドを組み合わせて使うタイプの MOD です。
                   </p>
+
+                  <h4>前提MOD</h4>
+                  <p>Forge版として使う場合、追加の必須ライブラリMODは検出されませんでした。Fabricで使う場合はFabric API系モジュールが必要です。</p>
 
                   <h4>解析元</h4>
                   <ul>
@@ -8182,6 +8407,8 @@ I I</code></pre>
                 <div class="mod-doc">
                   <h3>Techguns キー割り当てと操作方法</h3>
                   <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Techguns%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Techguns curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>追加の必須ライブラリMODは検出されませんでした。<code>mcmod.info</code> の依存リストは空です。</p>
                   <h4>解析元</h4>
                   <ul>
                     <li><code>techguns-1.12.2-2.0.2.0_pre3.2.jar</code></li>
@@ -8305,6 +8532,276 @@ I I</code></pre>
                 </div>
               </div>
             </details>
+            <details class="mod-folder" id="mod-guide-appleskin">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span
+                  class="mod-folder-name">AppleSkin</span><span class="mod-folder-meta">食べ物の満腹度・隠し満腹度を見やすくする情報表示mod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>AppleSkin キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=AppleSkin%20curseforge%20mod" target="_blank" rel="noopener noreferrer">AppleSkin curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>追加の必須ライブラリMODは検出されませんでした。NeoForge環境のクライアント側情報表示MODとして使います。</p>
+                  <h4>キー割り当て</h4>
+                  <p>AppleSkin専用のキー割り当てと独自コマンドは検出されませんでした。バニラ操作に情報表示を追加します。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>操作</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>食べ物にカーソルを合わせる</td>
+                          <td>満腹度と隠し満腹度の回復量をツールチップに表示します。</td>
+                        </tr>
+                        <tr>
+                          <td><code>Shift</code> を押しながら見る</td>
+                          <td>設定によって詳細な食料情報を表示します。</td>
+                        </tr>
+                        <tr>
+                          <td>食べ物を手に持つ</td>
+                          <td>食べた後の回復見込みを満腹度バー上に半透明表示します。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="mod-folder" id="mod-guide-jade">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span
+                  class="mod-folder-name">Jade</span><span class="mod-folder-meta">見ているブロックやモブの情報を画面に表示できるmod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>Jade キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Jade%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Jade curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>追加の必須ライブラリMODは検出されませんでした。JEI/REI/EMIなどのレシピ表示MODがあると、レシピ表示・使用先表示が便利になります。</p>
+                  <h4>キー割り当て</h4>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>キー</th>
+                          <th>機能</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>テンキー <code>0</code></td>
+                          <td>Jade設定を開く</td>
+                        </tr>
+                        <tr>
+                          <td>テンキー <code>1</code></td>
+                          <td>オーバーレイ表示のオン・オフ</td>
+                        </tr>
+                        <tr>
+                          <td>テンキー <code>2</code></td>
+                          <td>液体表示の切り替え</td>
+                        </tr>
+                        <tr>
+                          <td>テンキー <code>3</code> / <code>4</code></td>
+                          <td>レシピ表示 / 使用先表示</td>
+                        </tr>
+                        <tr>
+                          <td>テンキー <code>5</code></td>
+                          <td>読み上げ</td>
+                        </tr>
+                        <tr>
+                          <td>左 <code>Shift</code></td>
+                          <td>詳細表示</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h4>独自コマンド</h4>
+                  <p><code>/jade show</code>、<code>/jade hide</code>、<code>/jadec config</code>、<code>/jadec handlers</code>、<code>/jadec use_profile &lt;index&gt;</code>、<code>/jadec pin</code> が候補として確認できます。</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="mod-folder" id="mod-guide-modernfix">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span
+                  class="mod-folder-name">ModernFix</span><span class="mod-folder-meta">起動時間やメモリ使用量を改善する最適化mod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>ModernFix キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=ModernFix%20curseforge%20mod" target="_blank" rel="noopener noreferrer">ModernFix curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p>追加の必須ライブラリMODは検出されませんでした。JEIは任意連携です。</p>
+                  <h4>キー割り当て</h4>
+                  <p><code>Open config screen</code> という設定画面用キーが登録されていますが、デフォルトでは未割り当てです。必要な場合は操作設定から割り当てます。</p>
+                  <h4>独自コマンド</h4>
+                  <p><code>/modernfix mcfunctions</code> と、設定再読込案内に出る <code>/mfrc</code> が確認できます。通常プレイでは触らず、自動で軽量化するMODとして使います。</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="mod-folder" id="mod-guide-mousetweaks">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span
+                  class="mod-folder-name">Mouse Tweaks</span><span class="mod-folder-meta">インベントリ内のアイテム移動をマウス操作で高速化できるmod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>Mouse Tweaks キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Mouse%20Tweaks%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Mouse Tweaks curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p><code>Fabric API</code> が必要です。このjarはFabric版です。</p>
+                  <h4>キー割り当て・コマンド</h4>
+                  <p>専用キーと独自コマンドは検出されませんでした。マウス操作を拡張します。</p>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>操作</th>
+                          <th>内容</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>右クリックドラッグ</td>
+                          <td>通過したスロットへアイテムを1個ずつ分配します。</td>
+                        </tr>
+                        <tr>
+                          <td>左クリックドラッグ</td>
+                          <td>同じ種類のアイテムをまとめて移動しやすくします。</td>
+                        </tr>
+                        <tr>
+                          <td>マウスホイール</td>
+                          <td>チェストとインベントリ間でカーソル下のアイテムを移動します。</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="mod-folder" id="mod-guide-sophisticatedbackpacks">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span
+                  class="mod-folder-name">Sophisticated Backpacks</span><span class="mod-folder-meta">大容量バックパックと自動回収・補充アップグレードを追加できるmod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>Sophisticated Backpacks キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Sophisticated%20Backpacks%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Sophisticated Backpacks curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p><code>Sophisticated Core</code> が必須です。jar内メタデータでは <code>sophisticatedcore</code> <code>[1.4.33,)</code> が要求されています。</p>
+                  <h4>キー割り当て</h4>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>キー</th>
+                          <th>機能</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>B</code></td>
+                          <td>バックパックを開く</td>
+                        </tr>
+                        <tr>
+                          <td><code>C</code></td>
+                          <td>インベントリ連携操作</td>
+                        </tr>
+                        <tr>
+                          <td><code>Alt</code> + <code>Z</code></td>
+                          <td>アップグレード1のオン・オフ</td>
+                        </tr>
+                        <tr>
+                          <td><code>Alt</code> + <code>X</code></td>
+                          <td>アップグレード2のオン・オフ</td>
+                        </tr>
+                        <tr>
+                          <td>未割り当て</td>
+                          <td>ツール切り替え、アップグレード3-5</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h4>操作方法</h4>
+                  <p><code>B</code> または手持ち右クリックでバックパックを開き、アップグレードスロットにPickup、Magnet、Deposit、Restock、Refill、Compacting、Void、Smeltingなどを入れて機能を追加します。採掘用ならPickup + Filter + Compacting、倉庫整理ならDeposit + Restockの組み合わせが扱いやすいです。</p>
+                  <h4>独自コマンド</h4>
+                  <p><code>/sb list</code>、<code>/sb give</code>、<code>/sb template</code>、<code>/sb dynamic</code>、<code>/sophisticatedbackpacks</code> 系の管理・テンプレート用コマンドが確認できます。</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="mod-folder" id="mod-guide-waystones">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span
+                  class="mod-folder-name">Waystones</span><span class="mod-folder-meta">設置したウェイストーン間をワープできる移動補助mod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>Waystones キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Waystones%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Waystones curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p><code>Balm</code> が必須です。jar内メタデータでは <code>balm</code> <code>[21.0.39,)</code> が要求されています。</p>
+                  <h4>キー割り当て</h4>
+                  <p>専用キーは検出されませんでした。ウェイストーン本体やワープアイテムを右クリックして操作します。</p>
+                  <h4>操作方法</h4>
+                  <ol class="steps">
+                    <li>
+                      <div><strong>登録する</strong><span>ウェイストーンを設置または発見し、右クリックして有効化します。</span></div>
+                    </li>
+                    <li>
+                      <div><strong>ワープする</strong><span>登録済みウェイストーンを右クリックし、一覧から移動先を選びます。</span></div>
+                    </li>
+                    <li>
+                      <div><strong>用途で使い分ける</strong><span>Sharestoneは色ごとの共有移動、Portstoneは一方通行寄り、Warp StoneやScrollは探索先から戻る用途に向いています。</span></div>
+                    </li>
+                  </ol>
+                  <h4>独自コマンド</h4>
+                  <p><code>/waystones activate</code>、<code>/waystones forget</code>、<code>/waystones place</code>、<code>/waystones list</code>、<code>/waystones gui</code>、<code>/waystones cooldown</code> などの管理者向けコマンドが確認できます。</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="mod-folder" id="mod-guide-xaeroworldmap">
+              <summary><span class="folder-icon" aria-hidden="true"></span><span
+                  class="mod-folder-name">Xaero's World Map</span><span class="mod-folder-meta">探索済みエリアを大きなワールドマップとして表示できるmod</span></summary>
+              <div class="mod-folder-body">
+                <div class="mod-doc">
+                  <h3>Xaero's World Map キー割り当てと操作方法</h3>
+                  <p class="mod-source">CurseForge検索: <a href="https://www.google.com/search?q=Xaero%27s%20World%20Map%20curseforge%20mod" target="_blank" rel="noopener noreferrer">Xaero's World Map curseforge mod</a></p>
+                  <h4>前提MOD</h4>
+                  <p><code>XaeroLib</code> が必須です。Xaero's Minimap、Xaero's Better PVP、Open Parties and Claimsは任意連携です。</p>
+                  <h4>キー割り当て</h4>
+                  <div class="mod-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>キー</th>
+                          <th>機能</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>M</code></td>
+                          <td>ワールドマップを開く</td>
+                        </tr>
+                        <tr>
+                          <td><code>]</code></td>
+                          <td>ワールドマップ設定を開く</td>
+                        </tr>
+                        <tr>
+                          <td>右 <code>Shift</code></td>
+                          <td>クイック確認</td>
+                        </tr>
+                        <tr>
+                          <td>未割り当て</td>
+                          <td>ズーム、サーバー設定、ディメンション切り替え、追跡プレイヤー表示など</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h4>操作方法</h4>
+                  <p><code>M</code> で地図を開き、左ドラッグで移動、マウスホイールで拡大縮小、<code>Ctrl</code> + ホイールで細かいズームを行います。右クリックでマップ上のショートカット、ウェイポイントなどの要素を右クリックすると対象ごとのオプションを開けます。</p>
+                  <p>固有のスラッシュコマンドは検出されませんでした。</p>
+                </div>
+              </div>
+            </details>
           </div>
         </section>
         <!-- MOD GUIDES GENERATED END -->
@@ -8364,8 +8861,8 @@ I I</code></pre>
 
         <!-- CLIPCHAMP -->
         <section class="section" id="clipchamp">
-          <h1>Clipchamp 動画づくり</h1>
-          <p class="lead">ゴールは、15秒から30秒の短い動画を1本作ること。まず `Win + G` でマイクラの画面を録画し、Clipchampで短く切って見やすくします。</p>
+          <h1>動画編集（OBS Studio と CapCut）</h1>
+          <p class="lead">動画編集アプリは <strong>OBS Studio</strong> と <strong>CapCut</strong> の2つを使います。ゴールは、15秒から30秒の短い動画を1本作ること。まず OBS Studio でマイクラの画面を録画し、CapCut で短く切って見やすくします。</p>
           <div class="timeline" aria-label="Clipchampのタイムライン例">
             <div class="timeline-row"><span>動画</span>
               <div class="track">
@@ -8389,7 +8886,7 @@ I I</code></pre>
               <div><strong>テーマを1つ決める</strong><span>例: 建築しょうかい、すごい装置、今日のベストシーン。</span></div>
             </li>
             <li>
-              <div><strong>`Win` + `G` で録画画面を開く</strong><span>キャプチャ画面が開いたら、赤い録画ボタンを押して画面収録を始めます。</span></div>
+              <div><strong>OBS Studio で録画する</strong><span>OBS Studio を開き、「録画開始」ボタンを押して画面収録を始めます。終わったら「録画終了」を押します。</span></div>
             </li>
             <li>
               <div><strong>素材を2つから5つ選ぶ</strong><span>動画や写真を入れすぎると見づらいので、少なめでOKです。</span></div>
@@ -8407,6 +8904,95 @@ I I</code></pre>
               <div><strong>保存した動画を見つける</strong><span>エクスプローラーで保存先を開きます。わからない時は「ビデオ」「ダウンロード」「デスクトップ」を順に探します。</span></div>
             </li>
           </ol>
+
+          <h3 style="margin-top:36px;">くわしい手順（OBS Studio × CapCut）</h3>
+          <p class="lead">ここからは、OBS Studioで画面を録画し、CapCutで編集して、最後に書き出す（エクスポートする）までのくわしい手順です。</p>
+
+          <h3>1. OBS Studio による画面収録</h3>
+          <p><strong>1.1 収録の準備</strong></p>
+          <ol class="steps">
+            <li>
+              <div><strong>ソースの追加</strong><span>「ソース」パネルの「+」ボタンをクリックします。画面全体を撮る場合は「画面キャプチャ」、特定のウィンドウのみを撮る場合は「ゲームキャプチャ」または「ウィンドウキャプチャ」を選びます。</span></div>
+            </li>
+            <li>
+              <div><strong>音声の設定</strong><span>「音声ミキサー」でマイク（入力）とデスクトップ音声（出力）が正しく反応しているか確認します。</span></div>
+            </li>
+            <li>
+              <div><strong>出力設定の確認</strong><span>「設定」＞「出力」＞「録画」タブを確認します。録画ファイルのパス（保存先）を確認し、録画フォーマットは編集しやすい <code>mp4</code> または <code>mkv</code>（mkvは後でmp4に変換可能）を選びます。</span></div>
+            </li>
+          </ol>
+          <p><strong>1.2 収録の開始と終了</strong></p>
+          <ol class="steps">
+            <li>
+              <div><strong>録画開始</strong><span>右下の「録画開始」ボタンをクリックします。</span></div>
+            </li>
+            <li>
+              <div><strong>収録</strong><span>解説や操作を行います。</span></div>
+            </li>
+            <li>
+              <div><strong>録画終了</strong><span>「録画終了」ボタンをクリックします。ファイルが指定したフォルダに保存されます。</span></div>
+            </li>
+          </ol>
+
+          <h3>2. CapCut での編集</h3>
+          <p><strong>2.1 素材のインポート</strong></p>
+          <ol class="steps">
+            <li>
+              <div><strong>プロジェクトの作成</strong><span>CapCut（PC版）を起動し、「新しいプロジェクト」を作成します。</span></div>
+            </li>
+            <li>
+              <div><strong>動画の読み込み</strong><span>「インポート」ボタンをクリックし、OBSで収録した動画ファイルを選びます。</span></div>
+            </li>
+            <li>
+              <div><strong>タイムラインに配置</strong><span>インポートした素材を下の「タイムライン」にドラッグ＆ドロップします。</span></div>
+            </li>
+          </ol>
+          <p><strong>2.2 基本的な編集操作</strong></p>
+          <ul>
+            <li><strong>カット編集（分割）</strong>：再生ヘッド（青い線）を切りたい位置に合わせ、<code>Ctrl + B</code>（分割）を押します。不要な部分を選択して <code>Delete</code> キーで削除します。</li>
+            <li><strong>テロップ（テキスト）の追加</strong>：上部メニューの「テキスト」から好きなスタイルを選び、タイムラインに配置します。右側のパネルでフォント・サイズ・色を調整します。</li>
+            <li><strong>オーディオ調整</strong>：タイムラインのクリップを選び、右側パネルの「オーディオ」から音量を調整します。ノイズがある場合は「ノイズ除去」にチェックを入れると効果的です。</li>
+          </ul>
+
+          <h3>3. エクスポート（書き出し）</h3>
+          <p><strong>3.1 書き出し設定</strong></p>
+          <ol class="steps">
+            <li>
+              <div><strong>エクスポートを開く</strong><span>右上の「エクスポート」ボタンをクリックします。</span></div>
+            </li>
+            <li>
+              <div><strong>タイトルと保存先</strong><span>動画のファイル名（タイトル）を入力し、書き出し先のフォルダを選びます。</span></div>
+            </li>
+            <li>
+              <div><strong>解像度・フレームレート</strong><span>解像度は通常 <code>1080p</code> を推奨。フレームレートは収録時に合わせた設定（30fps または 60fps）を選びます。</span></div>
+            </li>
+          </ol>
+          <p><strong>3.2 最終確認</strong></p>
+          <ol class="steps">
+            <li>
+              <div><strong>書き出し</strong><span>「エクスポート」ボタンを押し、処理が完了するまで待ちます。</span></div>
+            </li>
+            <li>
+              <div><strong>再生して確認</strong><span>保存された動画を再生し、音声のズレや編集ミスがないか確認して完了です。</span></div>
+            </li>
+          </ol>
+
+          <h3>4. 【補足】YouTubeショート（9:16）向けの編集</h3>
+          <p>YouTubeショートやTikTok向けに縦長動画を作成する場合の設定です。</p>
+          <p><strong>4.1 CapCut のキャンバス設定</strong></p>
+          <ol class="steps">
+            <li>
+              <div><strong>アスペクト比を開く</strong><span>タイムライン上部の「アスペクト比」または「変更」をクリックします。</span></div>
+            </li>
+            <li>
+              <div><strong>9:16 を選ぶ</strong><span>「9:16」を選択します。</span></div>
+            </li>
+          </ol>
+          <p><strong>4.2 レイアウトの工夫</strong></p>
+          <ul>
+            <li><strong>背景のぼかし</strong>：横長の動画（16:9）を中央に置くと上下に黒い隙間ができます。クリップを選び、右側パネルの「動画」＞「キャンバス」＞「ぼかし」を選ぶと、背景にぼかした映像が表示されて見栄えが良くなります。</li>
+            <li><strong>テロップの位置</strong>：ショート動画では画面下部にユーザーアイコンやキャプションが重なるため、重要なテロップは画面中央からやや上寄りに配置するのがコツです。</li>
+          </ul>
         </section>
 
         <!-- TYPING -->
@@ -8476,7 +9062,7 @@ I I</code></pre>
 
   <script>
     const order = ['hero', 'windows', 'keys', 'save-place', 'commands', 'mod', 'mod-guides', 'mcreator', 'worlds', 'clipchamp', 'typing'];
-    const names = ['はじめに', 'Windowsそうび', 'キーでこまった時', '保存場所の探し方', 'コマンド', 'CurseForge MOD', 'MOD解説', 'MCreator MOD作成', '配布ワールド', 'Clipchamp 動画', 'タイピング'];
+    const names = ['はじめに', 'Windowsそうび', 'キーでこまった時', '保存場所の探し方', 'コマンド', 'CurseForge MOD', 'MOD解説', 'MCreator MOD作成', '配布ワールド', '動画編集', 'タイピング'];
 
     const sections = order.map(id => document.getElementById(id));
     const menuItems = Array.from(document.querySelectorAll('.menu-item'));
